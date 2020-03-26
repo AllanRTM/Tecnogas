@@ -37,9 +37,9 @@ public class Categoria extends javax.swing.JFrame {
         limita();
     }
     public void limita(){
-    idcategoria.setDocument(new limitar(idcategoria,11));
-    estado.setDocument(new limitar(estado,1));
-    nombrecategoria.setDocument(new limitar(nombrecategoria,12));
+    
+    estado.setDocument(new limitar(estado,1,1));
+    nombrecategoria.setDocument(new limitar(nombrecategoria,12,7));
     
     }
     void bloquear(){
@@ -386,9 +386,9 @@ public class Categoria extends javax.swing.JFrame {
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
         // TODO add your handling code here:
         /*UPDATE `categoria` SET `ID CATEGORIA`="124444",`NOMBRE CATEGORIA`="casa" WHERE `ID CATEGORIA` = "12"*/
+       // String consulta= "UPDATE `categoria_productos` SET `Id_categoria_productos`='"+idcategoria.getText()+"',`categoria`='"+nombrecategoria.getText()+"',`estado_categoria`='"+estado.getText()+"' WHERE `Id_categoria_productos`'"+idcategoria.getText()+"'";
         try {
-        PreparedStatement pst = cn.prepareStatement("UPDATE `categoria` SET `ID CATEGORIA`='" +idcategoria.getText()+ "',`NOMBRE CATEGORIA`='"+nombrecategoria.getText()
-        +"' WHERE `ID CATEGORIA` ='"+idcategoria.getText()+"'");
+        PreparedStatement pst = cn.prepareStatement("UPDATE `categoria_productos` SET `Id_categoria_productos`='"+idcategoria.getText()+"',`categoria`='"+nombrecategoria.getText()+"',`estado_categoria`='"+estado.getText()+"' WHERE `Id_categoria_productos`='"+idcategoria.getText()+"'");
         pst.executeUpdate();
         cargar("");
         
@@ -403,6 +403,7 @@ public class Categoria extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        this.dispose();
         panelcentral ingresar = new panelcentral();
                     ingresar.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed

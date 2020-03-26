@@ -51,7 +51,8 @@ super.paintComponent(grafico);
     
     public Login() {
         initComponents();
-        
+        setLocationRelativeTo(null);
+       
         
     }
     void acceder(String usuario, String pass)
@@ -92,18 +93,18 @@ super.paintComponent(grafico);
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        botonLogin = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         usuario = new javax.swing.JTextField();
         contraseña = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setForeground(new java.awt.Color(0, 23, 23));
-        jButton1.setText("Login");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        botonLogin.setForeground(new java.awt.Color(0, 23, 23));
+        botonLogin.setText("Login");
+        botonLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                botonLoginActionPerformed(evt);
             }
         });
 
@@ -131,7 +132,7 @@ super.paintComponent(grafico);
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(337, 337, 337)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(botonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(321, 321, 321)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -153,20 +154,20 @@ super.paintComponent(grafico);
                 .addGap(18, 18, 18)
                 .addComponent(contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
-                .addComponent(jButton1)
+                .addComponent(botonLogin)
                 .addGap(127, 127, 127))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void botonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLoginActionPerformed
     String usu =usuario.getText();
     String pas =new String(contraseña.getPassword());
     acceder(usu, pas);
         
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_botonLoginActionPerformed
 
     private void usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioActionPerformed
         // TODO add your handling code here:
@@ -216,8 +217,8 @@ super.paintComponent(grafico);
     Connection cn = cc.conexion();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonLogin;
     private javax.swing.JPasswordField contraseña;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField usuario;
     // End of variables declaration//GEN-END:variables
