@@ -7,18 +7,27 @@ package sistematecnogas;
 
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  *
  * @author radioshack
  */
 public class ingresarUsuario extends javax.swing.JFrame {
-
+    public static String fecha(){
+        Date fecha=new Date();
+        SimpleDateFormat formatoFecha=new SimpleDateFormat("dd/MM/YYYY");
+        return formatoFecha.format(fecha);
+    }
     /**
      * Creates new form ingresarUsuario
      */
     public ingresarUsuario() {
         initComponents();
+        lblFechaCreacion.setText(fecha());
+        lblFechaActualizacion.setText(fecha());
     }
 
     /**
@@ -41,6 +50,12 @@ public class ingresarUsuario extends javax.swing.JFrame {
         tipoUsrComboBox = new javax.swing.JComboBox<>();
         estadoUsrComboBox = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        txtID = new javax.swing.JTextField();
+        lblFechaCreacion = new javax.swing.JLabel();
+        lblFechaActualizacion = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,6 +80,16 @@ public class ingresarUsuario extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("Fecha de Creacion");
+
+        jLabel7.setText("Fecha de Actualizacion");
+
+        jLabel8.setText("ID Usuario");
+
+        lblFechaCreacion.setText("dd/MM/YYYY");
+
+        lblFechaActualizacion.setText("dd/MM/YYYY");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -77,28 +102,40 @@ public class ingresarUsuario extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel4))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
                         .addGap(51, 51, 51)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tipoUsrComboBox, 0, 143, Short.MAX_VALUE)
+                            .addComponent(tipoUsrComboBox, 0, 106, Short.MAX_VALUE)
                             .addComponent(estadoUsrComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtPassword)
-                            .addComponent(txtNombre)))
+                            .addComponent(txtNombre)
+                            .addComponent(txtID)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblFechaCreacion)
+                                    .addComponent(lblFechaActualizacion))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(107, 107, 107)
-                        .addComponent(jLabel5)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addComponent(jLabel5))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(42, 42, 42))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
-                .addGap(53, 53, 53)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -114,9 +151,17 @@ public class ingresarUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(estadoUsrComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(95, 95, 95)
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(lblFechaCreacion))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(lblFechaActualizacion))
+                .addGap(33, 33, 33)
                 .addComponent(jButton1)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addGap(42, 42, 42))
         );
 
         pack();
@@ -126,7 +171,7 @@ public class ingresarUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
         String pass =new String(txtPassword.getPassword());
         try {
-            String sql="INSERT INTO `Usuarios` (`nombre`, `contrasena`, `tipo_usuario`,`estado_usuario`) VALUES (?,?,?,?)";
+            String sql="INSERT INTO `Usuarios` (`nombre`, `contrasena`, `tipo_usuario`,`estado_usuario`,`id_usuario`,`fecha_creacion_usuario`,`fecha_actualizacion`) VALUES (?,?,?,?,?,?,?)";
             PreparedStatement pst  = cn.prepareStatement(sql);
             
             
@@ -134,12 +179,14 @@ public class ingresarUsuario extends javax.swing.JFrame {
             pst.setString(2, txtPassword.getText());
             pst.setString(3, tipoUsrComboBox.getName());
             pst.setString(4, estadoUsrComboBox.getName());
-            
+            pst.setString(5, txtID.getText());
+            pst.setString(6, lblFechaActualizacion.getText());
+            pst.setString(7, lblFechaCreacion.getText());
             pst.executeUpdate();
-            if (txtPassword.getText().isEmpty() && txtNombre.getText().isEmpty()) {
+            if (txtPassword.getText().isEmpty() && txtNombre.getText().isEmpty() && txtID.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "no pueden haber campos vacios");
             }
-            else if(!txtNombre.getText().contains("@")||!txtNombre.getText().contains(".")) {
+            else if(!txtNombre.getText().contains("@")&&!txtNombre.getText().contains(".")) {
             JOptionPane.showMessageDialog(null, "porfavor solo inserte letras");}
             else{
                 JOptionPane.showMessageDialog(null, "Registro Guardado con Exito");
@@ -198,7 +245,13 @@ public class ingresarUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel lblFechaActualizacion;
+    private javax.swing.JLabel lblFechaCreacion;
     private javax.swing.JComboBox<String> tipoUsrComboBox;
+    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
