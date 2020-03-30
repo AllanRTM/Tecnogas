@@ -98,8 +98,8 @@ super.paintComponent(grafico);
         contraseña = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        label_iconotecnogas = new javax.swing.JLabel();
+        label_titulobienvenidos = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -140,16 +140,16 @@ super.paintComponent(grafico);
         getContentPane().add(jLabel3);
         jLabel3.setBounds(500, 210, 85, 17);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/logo_tecnogas_transp.png"))); // NOI18N
-        jLabel4.setText("jLabel4");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(60, 130, 230, 100);
+        label_iconotecnogas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/logo_tecnogas_transp.png"))); // NOI18N
+        label_iconotecnogas.setText("jLabel4");
+        getContentPane().add(label_iconotecnogas);
+        label_iconotecnogas.setBounds(60, 130, 230, 100);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 51, 153));
-        jLabel5.setText("¡Bienvenido!");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(325, 40, 148, 29);
+        label_titulobienvenidos.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        label_titulobienvenidos.setForeground(new java.awt.Color(0, 51, 153));
+        label_titulobienvenidos.setText("¡Bienvenido!");
+        getContentPane().add(label_titulobienvenidos);
+        label_titulobienvenidos.setBounds(325, 40, 148, 29);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -214,8 +214,8 @@ super.paintComponent(grafico);
     private javax.swing.JPasswordField contraseña;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel label_iconotecnogas;
+    private javax.swing.JLabel label_titulobienvenidos;
     private javax.swing.JTextField usuario;
     // End of variables declaration//GEN-END:variables
 }
