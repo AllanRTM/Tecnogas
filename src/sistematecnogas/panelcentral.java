@@ -36,24 +36,24 @@ public class panelcentral extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         usuario = new javax.swing.JButton();
         ingresarproveedores = new javax.swing.JButton();
         usuario2 = new javax.swing.JButton();
         usuario3 = new javax.swing.JButton();
         usuario5 = new javax.swing.JButton();
-        usuario6 = new javax.swing.JButton();
-        usuario7 = new javax.swing.JButton();
         atras = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         fecha_pantalla = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
+        usuario4 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        ingresarproveedores1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 255));
@@ -64,15 +64,10 @@ public class panelcentral extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(180, 120, 190, 20);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setText("Ingreso de Cisternas");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(190, 220, 160, 20);
-
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Control diario de Combustible");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(560, 340, 220, 40);
+        jLabel1.setBounds(560, 340, 220, 30);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Ingreso de usuarios");
@@ -82,17 +77,12 @@ public class panelcentral extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Ingreso de categorías");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(20, 220, 160, 20);
-
-        jLabel7.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel7.setText("Ingreso de Combustibles");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(370, 220, 190, 20);
+        jLabel6.setBounds(610, 200, 160, 20);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Precio actual de gasolina");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(380, 120, 180, 30);
+        jLabel8.setBounds(360, 340, 180, 30);
 
         usuario.setBackground(new java.awt.Color(204, 204, 204));
         usuario.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
@@ -114,7 +104,7 @@ public class panelcentral extends javax.swing.JFrame {
             }
         });
         getContentPane().add(ingresarproveedores);
-        ingresarproveedores.setBounds(210, 160, 109, 23);
+        ingresarproveedores.setBounds(30, 260, 109, 23);
 
         usuario2.setBackground(new java.awt.Color(204, 204, 204));
         usuario2.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
@@ -125,31 +115,19 @@ public class panelcentral extends javax.swing.JFrame {
             }
         });
         getContentPane().add(usuario2);
-        usuario2.setBounds(30, 280, 109, 23);
+        usuario2.setBounds(630, 160, 109, 23);
 
         usuario3.setBackground(new java.awt.Color(204, 204, 204));
         usuario3.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         usuario3.setText("Ingresar");
         getContentPane().add(usuario3);
-        usuario3.setBounds(410, 160, 110, 23);
+        usuario3.setBounds(390, 380, 110, 23);
 
         usuario5.setBackground(new java.awt.Color(204, 204, 204));
         usuario5.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         usuario5.setText("Ingresar");
         getContentPane().add(usuario5);
-        usuario5.setBounds(620, 390, 109, 23);
-
-        usuario6.setBackground(new java.awt.Color(204, 204, 204));
-        usuario6.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
-        usuario6.setText("Ingresar");
-        getContentPane().add(usuario6);
-        usuario6.setBounds(210, 280, 109, 23);
-
-        usuario7.setBackground(new java.awt.Color(204, 204, 204));
-        usuario7.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
-        usuario7.setText("Ingresar");
-        getContentPane().add(usuario7);
-        usuario7.setBounds(400, 280, 109, 23);
+        usuario5.setBounds(620, 380, 109, 23);
 
         atras.setBackground(new java.awt.Color(204, 204, 204));
         atras.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
@@ -177,7 +155,39 @@ public class panelcentral extends javax.swing.JFrame {
         getContentPane().add(fecha_pantalla);
         fecha_pantalla.setBounds(680, 50, 70, 14);
         getContentPane().add(jSeparator1);
-        jSeparator1.setBounds(0, 320, 800, 10);
+        jSeparator1.setBounds(0, 310, 800, 10);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setText("Ingreso de Productos");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(610, 110, 160, 30);
+
+        usuario4.setBackground(new java.awt.Color(204, 204, 204));
+        usuario4.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        usuario4.setText("Ingresar");
+        usuario4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usuario4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(usuario4);
+        usuario4.setBounds(630, 250, 109, 23);
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("Ingreso de bombas");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(20, 210, 160, 20);
+
+        ingresarproveedores1.setBackground(new java.awt.Color(204, 204, 204));
+        ingresarproveedores1.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        ingresarproveedores1.setText("Ingresar");
+        ingresarproveedores1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ingresarproveedores1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(ingresarproveedores1);
+        ingresarproveedores1.setBounds(210, 160, 109, 23);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -211,6 +221,14 @@ public class panelcentral extends javax.swing.JFrame {
         Login salir = new Login();
                     salir.setVisible(true);
     }//GEN-LAST:event_atrasActionPerformed
+
+    private void usuario4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuario4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usuario4ActionPerformed
+
+    private void ingresarproveedores1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarproveedores1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ingresarproveedores1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -251,21 +269,21 @@ public class panelcentral extends javax.swing.JFrame {
     private javax.swing.JButton atras;
     private javax.swing.JLabel fecha_pantalla;
     private javax.swing.JButton ingresarproveedores;
+    private javax.swing.JButton ingresarproveedores1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton usuario;
     private javax.swing.JButton usuario2;
     private javax.swing.JButton usuario3;
+    private javax.swing.JButton usuario4;
     private javax.swing.JButton usuario5;
-    private javax.swing.JButton usuario6;
-    private javax.swing.JButton usuario7;
     // End of variables declaration//GEN-END:variables
 }

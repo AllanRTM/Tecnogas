@@ -104,6 +104,7 @@ super.paintComponent(grafico);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
+        botonLogin.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         botonLogin.setForeground(new java.awt.Color(0, 23, 23));
         botonLogin.setText("Inicio");
         botonLogin.addActionListener(new java.awt.event.ActionListener() {

@@ -5,7 +5,6 @@
  */
 package sistematecnogas;
 
-import com.mysql.cj.x.protobuf.MysqlxPrepare;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -131,11 +130,11 @@ public class Categoria extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         jLabel9.setText("Nombre de categoria");
 
-        jLabel10.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel10.setText("ID Categoria");
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel11.setText("Ingrese los datos de una categoría");
+        jLabel11.setText("Categorías de Productos");
 
         idcategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,7 +204,7 @@ public class Categoria extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         jLabel13.setText("Buscar:");
 
-        jLabel12.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel12.setText("Estado");
 
         estado.addActionListener(new java.awt.event.ActionListener() {
@@ -268,16 +267,16 @@ public class Categoria extends javax.swing.JFrame {
                                 .addComponent(modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addContainerGap()
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addContainerGap()
                 .addComponent(jLabel11)
-                .addGap(45, 45, 45)
+                .addGap(70, 70, 70)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

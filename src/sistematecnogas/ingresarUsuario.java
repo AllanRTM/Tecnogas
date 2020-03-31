@@ -10,11 +10,17 @@ import javax.swing.JOptionPane;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.sql.*;
+import servicios.conexion;
 
 /**
  *
  * @author radioshack
  */
+
+
+
+
 public class ingresarUsuario extends javax.swing.JFrame {
     public static String fecha(){
         Date fecha=new Date();
@@ -47,8 +53,6 @@ public class ingresarUsuario extends javax.swing.JFrame {
         txtNombre = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
-        tipoUsrComboBox = new javax.swing.JComboBox<>();
-        estadoUsrComboBox = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -56,6 +60,8 @@ public class ingresarUsuario extends javax.swing.JFrame {
         txtID = new javax.swing.JTextField();
         lblFechaCreacion = new javax.swing.JLabel();
         lblFechaActualizacion = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,17 +73,8 @@ public class ingresarUsuario extends javax.swing.JFrame {
 
         jLabel4.setText("Estado Usuario:");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel5.setText("Registro de Usuario");
-
-        tipoUsrComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Estandar", " " }));
-        tipoUsrComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tipoUsrComboBoxActionPerformed(evt);
-            }
-        });
-
-        estadoUsrComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
 
         jButton1.setText("Registrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -96,43 +93,48 @@ public class ingresarUsuario extends javax.swing.JFrame {
 
         lblFechaActualizacion.setText("dd/MM/YYYY");
 
+        jLabel9.setText("(Tipo)");
+
+        jLabel10.setText("(Activo o no activo)");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(93, 93, 93)
-                .addComponent(jLabel5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
-                        .addGap(51, 51, 51)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tipoUsrComboBox, 0, 133, Short.MAX_VALUE)
-                            .addComponent(estadoUsrComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtPassword)
-                            .addComponent(txtNombre)
-                            .addComponent(txtID)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblFechaCreacion)
-                                    .addComponent(lblFechaActualizacion))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8))
+                                .addGap(51, 51, 51)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtPassword)
+                                    .addComponent(txtNombre)
+                                    .addComponent(txtID)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblFechaCreacion)
+                                            .addComponent(lblFechaActualizacion)
+                                            .addComponent(jLabel10))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(82, 82, 82)
+                                .addComponent(jButton1)
+                                .addGap(0, 138, Short.MAX_VALUE)))
+                        .addGap(26, 26, 26))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addComponent(jButton1)
-                        .addGap(0, 138, Short.MAX_VALUE)))
-                .addGap(26, 26, 26))
+                        .addComponent(jLabel5)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,19 +153,19 @@ public class ingresarUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(tipoUsrComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                    .addComponent(jLabel9))
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(estadoUsrComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                    .addComponent(jLabel10))
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(lblFechaCreacion))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(lblFechaActualizacion))
@@ -181,6 +183,8 @@ public class ingresarUsuario extends javax.swing.JFrame {
         try {
             String sql="INSERT INTO `Usuarios` (`nombre`, `contrasena`, `tipo_usuario`,`estado_usuario`,`id_usuario`,`fecha_creacion_usuario`,`fecha_actualizacion`) VALUES (?,?,?,?,?,?,?)";
             PreparedStatement pst  = cn.prepareStatement(sql);
+            
+         
             
             
             pst.setString(1, txtNombre.getText());
@@ -208,10 +212,6 @@ public class ingresarUsuario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "INGRESA TODOS LOS VALORES CORRECTAMENTE");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void tipoUsrComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoUsrComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tipoUsrComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,12 +247,15 @@ public class ingresarUsuario extends javax.swing.JFrame {
             }
         });
     }
+    
+    conexion cc = new conexion();
+Connection cn = cc.conexion();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JComboBox<String> estadoUsrComboBox;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -260,9 +263,9 @@ public class ingresarUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lblFechaActualizacion;
     private javax.swing.JLabel lblFechaCreacion;
-    private javax.swing.JComboBox<String> tipoUsrComboBox;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JPasswordField txtPassword;

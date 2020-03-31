@@ -18,7 +18,7 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import servicios.conexion;
-import Atxy2k.CustomTextField.RestrictedTextField;
+//import Atxy2k.CustomTextField.RestrictedTextField;
 
 /**
  *
@@ -46,8 +46,8 @@ public class Proveedores extends javax.swing.JFrame {
     
     }
     public void limitar(){
-    RestrictedTextField limitarr =new RestrictedTextField(idproveedor);
-    limitarr.setLimit(11);
+    //RestrictedTextField limitarr =new RestrictedTextField(idproveedor);
+   // limitarr.setLimit(11);
     
     }
     public void Valida(){
