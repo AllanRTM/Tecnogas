@@ -64,6 +64,11 @@ public class Ingreso_PrecioActual_Combustible extends javax.swing.JFrame {
         jLabel7.setText("dd/MM/YYYY");
 
         jButton1.setText("Atrás");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jButton2.setText("Ingresar precio actual");
 
@@ -126,6 +131,11 @@ public class Ingreso_PrecioActual_Combustible extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+panelcentral botonatras = new panelcentral();
+botonatras.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments

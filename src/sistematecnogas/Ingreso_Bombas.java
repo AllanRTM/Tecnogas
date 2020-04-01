@@ -89,6 +89,11 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
         textField1.setText("textField1");
 
         jButton2.setText("Atrás");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         jButton3.setText("Modificar");
 
@@ -193,6 +198,12 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+panelcentral botonatras = new panelcentral();
+botonatras.setVisible(true);
+this.dispose();// TODO add your handling code here:
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments

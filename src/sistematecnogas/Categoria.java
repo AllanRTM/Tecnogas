@@ -121,6 +121,11 @@ public class Categoria extends javax.swing.JFrame {
         });
 
         jButton2.setText("Atras");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -449,6 +454,12 @@ public class Categoria extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(rootPane, "INGRESA SOLO LETRAS");
         }
     }//GEN-LAST:event_txtbuscarKeyTyped
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+panelcentral botonatras = new panelcentral();
+botonatras.setVisible(true);
+this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments

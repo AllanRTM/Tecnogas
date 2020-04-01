@@ -87,6 +87,11 @@ public class panelcentral extends javax.swing.JFrame {
         usuario.setBackground(new java.awt.Color(204, 204, 204));
         usuario.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
         usuario.setText("Ingresar");
+        usuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                usuarioMouseClicked(evt);
+            }
+        });
         usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usuarioActionPerformed(evt);
@@ -98,6 +103,11 @@ public class panelcentral extends javax.swing.JFrame {
         ingresarproveedores.setBackground(new java.awt.Color(204, 204, 204));
         ingresarproveedores.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         ingresarproveedores.setText("Ingresar");
+        ingresarproveedores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ingresarproveedoresMouseClicked(evt);
+            }
+        });
         ingresarproveedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ingresarproveedoresActionPerformed(evt);
@@ -109,6 +119,11 @@ public class panelcentral extends javax.swing.JFrame {
         usuario2.setBackground(new java.awt.Color(204, 204, 204));
         usuario2.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         usuario2.setText("Ingresar");
+        usuario2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                usuario2MouseClicked(evt);
+            }
+        });
         usuario2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usuario2ActionPerformed(evt);
@@ -120,18 +135,33 @@ public class panelcentral extends javax.swing.JFrame {
         usuario3.setBackground(new java.awt.Color(204, 204, 204));
         usuario3.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         usuario3.setText("Ingresar");
+        usuario3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                usuario3MouseClicked(evt);
+            }
+        });
         getContentPane().add(usuario3);
         usuario3.setBounds(390, 380, 110, 23);
 
         usuario5.setBackground(new java.awt.Color(204, 204, 204));
         usuario5.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         usuario5.setText("Ingresar");
+        usuario5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                usuario5MouseClicked(evt);
+            }
+        });
         getContentPane().add(usuario5);
         usuario5.setBounds(620, 380, 109, 23);
 
         atras.setBackground(new java.awt.Color(204, 204, 204));
         atras.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         atras.setText("Salir del sistema");
+        atras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                atrasMouseClicked(evt);
+            }
+        });
         atras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 atrasActionPerformed(evt);
@@ -155,7 +185,7 @@ public class panelcentral extends javax.swing.JFrame {
         getContentPane().add(fecha_pantalla);
         fecha_pantalla.setBounds(680, 50, 70, 14);
         getContentPane().add(jSeparator1);
-        jSeparator1.setBounds(0, 310, 800, 10);
+        jSeparator1.setBounds(0, 310, 800, 2);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Ingreso de Productos");
@@ -165,6 +195,11 @@ public class panelcentral extends javax.swing.JFrame {
         usuario4.setBackground(new java.awt.Color(204, 204, 204));
         usuario4.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         usuario4.setText("Ingresar");
+        usuario4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                usuario4MouseClicked(evt);
+            }
+        });
         usuario4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usuario4ActionPerformed(evt);
@@ -181,6 +216,11 @@ public class panelcentral extends javax.swing.JFrame {
         ingresarproveedores1.setBackground(new java.awt.Color(204, 204, 204));
         ingresarproveedores1.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         ingresarproveedores1.setText("Ingresar");
+        ingresarproveedores1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ingresarproveedores1MouseClicked(evt);
+            }
+        });
         ingresarproveedores1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ingresarproveedores1ActionPerformed(evt);
@@ -200,8 +240,8 @@ public class panelcentral extends javax.swing.JFrame {
     
     private void usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioActionPerformed
         // TODO add your handling code here:
-        ingresarUsuario ingresar = new ingresarUsuario();
-                    ingresar.setVisible(true);
+       // ingresoDeUsuarios ingresar = new ingresoDeUsuarios();
+                   // ingresar.setVisible(true);
     }//GEN-LAST:event_usuarioActionPerformed
 
     private void ingresarproveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarproveedoresActionPerformed
@@ -229,6 +269,51 @@ public class panelcentral extends javax.swing.JFrame {
     private void ingresarproveedores1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarproveedores1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ingresarproveedores1ActionPerformed
+
+    private void usuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usuarioMouseClicked
+       IngresoDeUsuarios boton_usuario = new IngresoDeUsuarios();
+       boton_usuario.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_usuarioMouseClicked
+
+    private void atrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atrasMouseClicked
+System.exit(0);        // TODO add your handling code here:
+    }//GEN-LAST:event_atrasMouseClicked
+
+    private void ingresarproveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingresarproveedoresMouseClicked
+Ingreso_Bombas botonbombas = new Ingreso_Bombas();
+botonbombas.setVisible(true);
+this.dispose();// TODO add your handling code here:
+    }//GEN-LAST:event_ingresarproveedoresMouseClicked
+
+    private void ingresarproveedores1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingresarproveedores1MouseClicked
+Proveedores boton_proveedores = new Proveedores();
+boton_proveedores.setVisible(true);
+this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_ingresarproveedores1MouseClicked
+
+    private void usuario2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usuario2MouseClicked
+Productos boton_productos = new Productos();
+boton_productos.setVisible(true);
+this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_usuario2MouseClicked
+
+    private void usuario4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usuario4MouseClicked
+Categoria boton_categoria = new Categoria();
+boton_categoria.setVisible(true);
+this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_usuario4MouseClicked
+
+    private void usuario3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usuario3MouseClicked
+Ingreso_PrecioActual_Combustible boton_precioactual = new Ingreso_PrecioActual_Combustible();
+boton_precioactual.setVisible(true);
+this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_usuario3MouseClicked
+
+    private void usuario5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usuario5MouseClicked
+Control_Combustible_Diario boton_controlcd = new Control_Combustible_Diario();
+boton_controlcd.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_usuario5MouseClicked
 
     /**
      * @param args the command line arguments

@@ -210,6 +210,11 @@ public class Proveedores extends javax.swing.JFrame {
         });
 
         jButton3.setText("Atras");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -700,6 +705,12 @@ public class Proveedores extends javax.swing.JFrame {
         direccion.setText(String.valueOf(tbclientes.getValueAt(seleccionar, 4)));
         
     }//GEN-LAST:event_tbclientesMouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+panelcentral botonatras = new panelcentral();
+botonatras.setVisible(true);
+this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3MouseClicked
 
     /**
      * @param args the command line arguments
