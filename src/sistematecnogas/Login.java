@@ -102,7 +102,7 @@ super.paintComponent(grafico);
         label_titulobienvenidos = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         botonLogin.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         botonLogin.setForeground(new java.awt.Color(0, 23, 23));
@@ -112,45 +112,38 @@ super.paintComponent(grafico);
                 botonLoginActionPerformed(evt);
             }
         });
-        getContentPane().add(botonLogin);
-        botonLogin.setBounds(337, 299, 109, 23);
+        getContentPane().add(botonLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 299, 109, -1));
 
         usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usuarioActionPerformed(evt);
             }
         });
-        getContentPane().add(usuario);
-        usuario.setBounds(500, 160, 210, 17);
+        getContentPane().add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, 210, 17));
 
         contraseña.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 contraseñaActionPerformed(evt);
             }
         });
-        getContentPane().add(contraseña);
-        contraseña.setBounds(500, 240, 210, 20);
+        getContentPane().add(contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 210, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Ingrese nombre de usuario:");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(500, 130, 193, 17);
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Contraseña:");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(500, 210, 85, 17);
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 210, -1, -1));
 
         label_iconotecnogas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/logo_tecnogas_transp.png"))); // NOI18N
         label_iconotecnogas.setText("jLabel4");
-        getContentPane().add(label_iconotecnogas);
-        label_iconotecnogas.setBounds(60, 130, 230, 100);
+        getContentPane().add(label_iconotecnogas, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 230, 100));
 
         label_titulobienvenidos.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         label_titulobienvenidos.setForeground(new java.awt.Color(0, 51, 153));
         label_titulobienvenidos.setText("¡Bienvenido!");
-        getContentPane().add(label_titulobienvenidos);
-        label_titulobienvenidos.setBounds(325, 40, 148, 29);
+        getContentPane().add(label_titulobienvenidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 40, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
