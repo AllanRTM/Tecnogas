@@ -59,7 +59,7 @@ super.paintComponent(grafico);
     {
        String cap="";
        /*String sql="SELECT * FROM `usuario` WHERE `id_usuario` =" +usuario+ "&& `contraseña` = + "+ pass;*/
-       String sql="SELECT `id_usuario`, `nombre`, `contraseña`, `tipo_usuario`, `estado_usuario`, `fecha_creacion_usuario`, `fecha_actualizacion` FROM `usuarios` WHERE `id_usuario` = '"+usuario+"' and `contraseña` = '"+pass+"'";
+       String sql="SELECT `id_usuario`, `nombre`, `contraseña`, `tipo_usuario`, `estado_usuario`, `fecha_creacion_usuario`, `fecha_actualizacion` FROM `usuarios` WHERE `nombre` = '"+usuario+"' and `contraseña` = '"+pass+"'";
        //String sql="SELECT `id_usuario`, `nombre`, `contraseña`, `tipodeusuario` FROM `usuario` WHERE `id_usuario` = '"+usuario+"' and `contraseña` = '"+pass+"'";
         try {
             Statement st = cn.createStatement();
