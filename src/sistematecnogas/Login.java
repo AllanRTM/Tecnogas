@@ -16,6 +16,11 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import servicios.conexion;
+import java.text.SimpleDateFormat;
+
+import java.util.Date;
+import java.util.GregorianCalendar;
+import static sistematecnogas.panelcentral.fecha;
 
 
 /**
@@ -24,7 +29,9 @@ import servicios.conexion;
  */
 public class Login extends javax.swing.JFrame {
 
-    /**
+    
+   
+    /*
      * Creates new form Login
      */
     public class Imagen extends javax.swing.JPanel {
@@ -52,6 +59,13 @@ super.paintComponent(grafico);
     public Login() {
         initComponents();
         setLocationRelativeTo(null);
+        
+        fecha_pantalla.setText(fecha());
+        
+        
+        
+        
+        
        
         
     }
@@ -100,6 +114,8 @@ super.paintComponent(grafico);
         jLabel3 = new javax.swing.JLabel();
         label_iconotecnogas = new javax.swing.JLabel();
         label_titulobienvenidos = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        fecha_pantalla = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -119,35 +135,50 @@ super.paintComponent(grafico);
                 usuarioActionPerformed(evt);
             }
         });
-        getContentPane().add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, 210, 17));
+        getContentPane().add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 210, 17));
 
         contraseña.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 contraseñaActionPerformed(evt);
             }
         });
-        getContentPane().add(contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 210, -1));
+        getContentPane().add(contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, 210, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Ingrese nombre de usuario:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Contraseña:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 210, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, -1, -1));
 
         label_iconotecnogas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/logo_tecnogas_transp.png"))); // NOI18N
         label_iconotecnogas.setText("jLabel4");
-        getContentPane().add(label_iconotecnogas, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 230, 100));
+        label_iconotecnogas.setPreferredSize(new java.awt.Dimension(270, 134));
+        getContentPane().add(label_iconotecnogas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 230, 100));
 
-        label_titulobienvenidos.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        label_titulobienvenidos.setForeground(new java.awt.Color(0, 51, 153));
+        label_titulobienvenidos.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        label_titulobienvenidos.setForeground(new java.awt.Color(0, 51, 102));
         label_titulobienvenidos.setText("¡Bienvenido!");
-        getContentPane().add(label_titulobienvenidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 40, -1, -1));
+        getContentPane().add(label_titulobienvenidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 250, 60));
+
+        jLabel1.setText("Fecha:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 20, -1, -1));
+
+        fecha_pantalla.setText("dd-MM-YYYY");
+        getContentPane().add(fecha_pantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 20, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+      public static String fecha(){
+    Date fecha = new Date();
+    SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/YYYY");
+           return formatofecha.format(fecha);
+    }
+    
+    
+    
     private void botonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLoginActionPerformed
     String usu =usuario.getText();
     String pas =new String(contraseña.getPassword());
@@ -206,6 +237,8 @@ super.paintComponent(grafico);
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonLogin;
     private javax.swing.JPasswordField contraseña;
+    private javax.swing.JLabel fecha_pantalla;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel label_iconotecnogas;

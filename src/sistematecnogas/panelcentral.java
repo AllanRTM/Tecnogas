@@ -23,6 +23,7 @@ public class panelcentral extends javax.swing.JFrame {
      */
     public panelcentral() {
         initComponents();
+        //fecha_pantalla.setText(fecha());
         fecha_pantalla.setText(fecha());
     }
 
@@ -65,7 +66,7 @@ public class panelcentral extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Control diario de Combustible");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 340, 220, 30));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 360, 220, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Ingreso de usuarios");
@@ -73,11 +74,11 @@ public class panelcentral extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Ingreso de categorías");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 200, 160, 20));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, 160, 20));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Precio actual de gasolina");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 340, 180, 30));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 180, 30));
 
         usuario.setBackground(new java.awt.Color(204, 204, 204));
         usuario.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
@@ -122,7 +123,7 @@ public class panelcentral extends javax.swing.JFrame {
                 usuario2ActionPerformed(evt);
             }
         });
-        getContentPane().add(usuario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 160, 109, -1));
+        getContentPane().add(usuario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 109, -1));
 
         usuario3.setBackground(new java.awt.Color(204, 204, 204));
         usuario3.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
@@ -132,7 +133,12 @@ public class panelcentral extends javax.swing.JFrame {
                 usuario3MouseClicked(evt);
             }
         });
-        getContentPane().add(usuario3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 380, 110, -1));
+        usuario3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usuario3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(usuario3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 110, -1));
 
         usuario5.setBackground(new java.awt.Color(204, 204, 204));
         usuario5.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
@@ -142,7 +148,7 @@ public class panelcentral extends javax.swing.JFrame {
                 usuario5MouseClicked(evt);
             }
         });
-        getContentPane().add(usuario5, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 380, 109, -1));
+        getContentPane().add(usuario5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 400, 109, -1));
 
         atras.setBackground(new java.awt.Color(204, 204, 204));
         atras.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
@@ -157,7 +163,7 @@ public class panelcentral extends javax.swing.JFrame {
                 atrasActionPerformed(evt);
             }
         });
-        getContentPane().add(atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, 150, 30));
+        getContentPane().add(atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, 150, 30));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 51, 153));
@@ -166,15 +172,15 @@ public class panelcentral extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel9.setText("Fecha:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 50, 40, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 40, -1));
 
         fecha_pantalla.setText("DD//MM/YYYY");
-        getContentPane().add(fecha_pantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 50, 70, -1));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 800, -1));
+        getContentPane().add(fecha_pantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, 70, -1));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 560, 10));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Ingreso de Productos");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 110, 160, 30));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 160, 30));
 
         usuario4.setBackground(new java.awt.Color(204, 204, 204));
         usuario4.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
@@ -189,11 +195,11 @@ public class panelcentral extends javax.swing.JFrame {
                 usuario4ActionPerformed(evt);
             }
         });
-        getContentPane().add(usuario4, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 250, 109, -1));
+        getContentPane().add(usuario4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, 130, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Ingreso de bombas");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 160, 20));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 160, 20));
 
         ingresarproveedores1.setBackground(new java.awt.Color(204, 204, 204));
         ingresarproveedores1.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
@@ -295,6 +301,10 @@ this.dispose();        // TODO add your handling code here:
 Control_Combustible_Diario boton_controlcd = new Control_Combustible_Diario();
 boton_controlcd.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_usuario5MouseClicked
+
+    private void usuario3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuario3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usuario3ActionPerformed
 
     /**
      * @param args the command line arguments
