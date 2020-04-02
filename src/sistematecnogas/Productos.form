@@ -37,7 +37,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="textField1" max="32767" attributes="0"/>
+                                  <Component id="txtbuscar" max="32767" attributes="0"/>
                               </Group>
                               <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -118,7 +118,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="textField1" max="32767" attributes="0"/>
+                          <Component id="txtbuscar" max="32767" attributes="0"/>
                           <Component id="jButton1" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -189,7 +189,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.ScrollPaneSupportLayout"/>
     </Container>
-    <Component class="java.awt.TextField" name="textField1">
+    <Component class="java.awt.TextField" name="txtbuscar">
       <Properties>
         <Property name="text" type="java.lang.String" value="textField1"/>
       </Properties>
