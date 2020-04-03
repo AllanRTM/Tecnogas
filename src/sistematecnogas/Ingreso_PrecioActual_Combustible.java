@@ -43,6 +43,12 @@ public class Ingreso_PrecioActual_Combustible extends javax.swing.JFrame {
              
     }
     
+    public void limpiarcajas(){
+    caja_litro_super.setText(null);
+    caja_litro_diesel.setText(null);
+    };
+   
+    
     
     public Ingreso_PrecioActual_Combustible() {
         initComponents();
@@ -132,6 +138,11 @@ public class Ingreso_PrecioActual_Combustible extends javax.swing.JFrame {
         buttom_limpiar.setActionCommand("Limpiar");
         buttom_limpiar.setLabel("Limpiar");
         buttom_limpiar.setName(""); // NOI18N
+        buttom_limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttom_limpiarActionPerformed(evt);
+            }
+        });
 
         buttom_insert_preciosuper.setText("Inserte precio de Super");
         buttom_insert_preciosuper.addActionListener(new java.awt.event.ActionListener() {
@@ -260,9 +271,11 @@ botonatras.setVisible(true);        // TODO add your handling code here:
             
             if (resultado > 0){
                 JOptionPane.showMessageDialog(null, "Registro insertado correctamente.");
+                limpiarcajas();
                 
             }else{
                     JOptionPane.showMessageDialog(null, "Error al insertar el registro.");}
+                limpiarcajas();
             
             conection.close();
             
@@ -295,6 +308,10 @@ botonatras.setVisible(true);        // TODO add your handling code here:
         }
         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void buttom_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttom_limpiarActionPerformed
+        limpiarcajas();
+    }//GEN-LAST:event_buttom_limpiarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -232,6 +232,9 @@
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="buttom_limpiar"/>
       </AccessibilityProperties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttom_limpiarActionPerformed"/>
+      </Events>
     </Component>
     <Container class="java.awt.ScrollPane" name="scroll_panel_precioscombustible">
 
