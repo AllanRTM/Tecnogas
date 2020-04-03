@@ -5,9 +5,10 @@
  */
 package sistematecnogas;
 
-import com.sun.jdi.connect.spi.Connection;
+import java.sql.*;
 import java.beans.Statement;
 import servicios.conexion;
+
 
 /**
  *
@@ -15,18 +16,21 @@ import servicios.conexion;
  */
 public class Productos extends javax.swing.JFrame {
 
-    Statement sent;
+    
     conexion cc=new conexion();
-    Connection cn= cc.conexion();
+    Connection cn = cc.conexion();
     
     public Productos() {
-        initComponents();
+      initComponents();
         
          try{
-        sent=cn.createStatement();
+        
+       
         String sql="SELECT * FROM productos";
         
-        java.sql.ResultSet rs=sent.executeQuery(sql);
+        
+        java.sql.Statement st = cn.createStatement();
+        java.sql.ResultSet rs = st.executeQuery(sql);
         while(rs.next()){
             this.cmbusuario.addItem(rs.getString("id_usuarios"));
             this.cmbcategoria.addItem(rs.getString("id_categoria_productos"));
@@ -228,7 +232,7 @@ public class Productos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmbestadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbestadoActionPerformed
-        // TODO add your handling code here:
+       // TODO add your handling code here:
     }//GEN-LAST:event_cmbestadoActionPerformed
 
     private void cmbusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbusuarioActionPerformed

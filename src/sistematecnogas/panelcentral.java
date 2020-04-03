@@ -42,8 +42,8 @@ public class panelcentral extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         usuario = new javax.swing.JButton();
-        ingresarproveedores = new javax.swing.JButton();
-        usuario2 = new javax.swing.JButton();
+        bombas = new javax.swing.JButton();
+        productos = new javax.swing.JButton();
         usuario3 = new javax.swing.JButton();
         usuario5 = new javax.swing.JButton();
         atras = new javax.swing.JButton();
@@ -52,9 +52,9 @@ public class panelcentral extends javax.swing.JFrame {
         fecha_pantalla = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
-        usuario4 = new javax.swing.JButton();
+        categorias = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        ingresarproveedores1 = new javax.swing.JButton();
+        proveedores = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 255));
@@ -95,35 +95,35 @@ public class panelcentral extends javax.swing.JFrame {
         });
         getContentPane().add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 109, -1));
 
-        ingresarproveedores.setBackground(new java.awt.Color(204, 204, 204));
-        ingresarproveedores.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
-        ingresarproveedores.setText("Ingresar");
-        ingresarproveedores.addMouseListener(new java.awt.event.MouseAdapter() {
+        bombas.setBackground(new java.awt.Color(204, 204, 204));
+        bombas.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        bombas.setText("Ingresar");
+        bombas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ingresarproveedoresMouseClicked(evt);
+                bombasMouseClicked(evt);
             }
         });
-        ingresarproveedores.addActionListener(new java.awt.event.ActionListener() {
+        bombas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ingresarproveedoresActionPerformed(evt);
+                bombasActionPerformed(evt);
             }
         });
-        getContentPane().add(ingresarproveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 109, -1));
+        getContentPane().add(bombas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 109, -1));
 
-        usuario2.setBackground(new java.awt.Color(204, 204, 204));
-        usuario2.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
-        usuario2.setText("Ingresar");
-        usuario2.addMouseListener(new java.awt.event.MouseAdapter() {
+        productos.setBackground(new java.awt.Color(204, 204, 204));
+        productos.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        productos.setText("Ingresar");
+        productos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                usuario2MouseClicked(evt);
+                productosMouseClicked(evt);
             }
         });
-        usuario2.addActionListener(new java.awt.event.ActionListener() {
+        productos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usuario2ActionPerformed(evt);
+                productosActionPerformed(evt);
             }
         });
-        getContentPane().add(usuario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 109, -1));
+        getContentPane().add(productos, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 109, -1));
 
         usuario3.setBackground(new java.awt.Color(204, 204, 204));
         usuario3.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
@@ -182,39 +182,39 @@ public class panelcentral extends javax.swing.JFrame {
         jLabel3.setText("Ingreso de Productos");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 160, 30));
 
-        usuario4.setBackground(new java.awt.Color(204, 204, 204));
-        usuario4.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
-        usuario4.setText("Ingresar");
-        usuario4.addMouseListener(new java.awt.event.MouseAdapter() {
+        categorias.setBackground(new java.awt.Color(204, 204, 204));
+        categorias.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        categorias.setText("Ingresar");
+        categorias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                usuario4MouseClicked(evt);
+                categoriasMouseClicked(evt);
             }
         });
-        usuario4.addActionListener(new java.awt.event.ActionListener() {
+        categorias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usuario4ActionPerformed(evt);
+                categoriasActionPerformed(evt);
             }
         });
-        getContentPane().add(usuario4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, 130, -1));
+        getContentPane().add(categorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, 130, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Ingreso de bombas");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 160, 20));
 
-        ingresarproveedores1.setBackground(new java.awt.Color(204, 204, 204));
-        ingresarproveedores1.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
-        ingresarproveedores1.setText("Ingresar");
-        ingresarproveedores1.addMouseListener(new java.awt.event.MouseAdapter() {
+        proveedores.setBackground(new java.awt.Color(204, 204, 204));
+        proveedores.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        proveedores.setText("Ingresar");
+        proveedores.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ingresarproveedores1MouseClicked(evt);
+                proveedoresMouseClicked(evt);
             }
         });
-        ingresarproveedores1.addActionListener(new java.awt.event.ActionListener() {
+        proveedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ingresarproveedores1ActionPerformed(evt);
+                proveedoresActionPerformed(evt);
             }
         });
-        getContentPane().add(ingresarproveedores1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 109, -1));
+        getContentPane().add(proveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 109, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -231,17 +231,15 @@ public class panelcentral extends javax.swing.JFrame {
                    // ingresar.setVisible(true);
     }//GEN-LAST:event_usuarioActionPerformed
 
-    private void ingresarproveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarproveedoresActionPerformed
+    private void bombasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bombasActionPerformed
         // TODO add your handling code here:
-        Proveedores ingresar = new Proveedores();
-        ingresar.setVisible(true);
-    }//GEN-LAST:event_ingresarproveedoresActionPerformed
+       
+    }//GEN-LAST:event_bombasActionPerformed
 
-    private void usuario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuario2ActionPerformed
+    private void productosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productosActionPerformed
         // TODO add your handling code here:
-        Categoria ingresar = new Categoria();
-                    ingresar.setVisible(true);
-    }//GEN-LAST:event_usuario2ActionPerformed
+      
+    }//GEN-LAST:event_productosActionPerformed
 
     private void atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasActionPerformed
         // TODO add your handling code here:
@@ -249,13 +247,13 @@ public class panelcentral extends javax.swing.JFrame {
                     salir.setVisible(true);
     }//GEN-LAST:event_atrasActionPerformed
 
-    private void usuario4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuario4ActionPerformed
+    private void categoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoriasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_usuario4ActionPerformed
+    }//GEN-LAST:event_categoriasActionPerformed
 
-    private void ingresarproveedores1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarproveedores1ActionPerformed
+    private void proveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_proveedoresActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ingresarproveedores1ActionPerformed
+    }//GEN-LAST:event_proveedoresActionPerformed
 
     private void usuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usuarioMouseClicked
        IngresoDeUsuarios boton_usuario = new IngresoDeUsuarios();
@@ -267,29 +265,29 @@ public class panelcentral extends javax.swing.JFrame {
 System.exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_atrasMouseClicked
 
-    private void ingresarproveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingresarproveedoresMouseClicked
+    private void bombasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bombasMouseClicked
 Ingreso_Bombas botonbombas = new Ingreso_Bombas();
 botonbombas.setVisible(true);
 this.dispose();// TODO add your handling code here:
-    }//GEN-LAST:event_ingresarproveedoresMouseClicked
+    }//GEN-LAST:event_bombasMouseClicked
 
-    private void ingresarproveedores1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingresarproveedores1MouseClicked
+    private void proveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proveedoresMouseClicked
 Proveedores boton_proveedores = new Proveedores();
 boton_proveedores.setVisible(true);
 this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_ingresarproveedores1MouseClicked
+    }//GEN-LAST:event_proveedoresMouseClicked
 
-    private void usuario2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usuario2MouseClicked
+    private void productosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productosMouseClicked
 Productos boton_productos = new Productos();
 boton_productos.setVisible(true);
 this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_usuario2MouseClicked
+    }//GEN-LAST:event_productosMouseClicked
 
-    private void usuario4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usuario4MouseClicked
+    private void categoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoriasMouseClicked
 Categoria boton_categoria = new Categoria();
 boton_categoria.setVisible(true);
 this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_usuario4MouseClicked
+    }//GEN-LAST:event_categoriasMouseClicked
 
     private void usuario3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usuario3MouseClicked
 Ingreso_PrecioActual_Combustible boton_precioactual = new Ingreso_PrecioActual_Combustible();
@@ -343,9 +341,9 @@ boton_controlcd.setVisible(true);        // TODO add your handling code here:
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton atras;
+    private javax.swing.JButton bombas;
+    private javax.swing.JButton categorias;
     private javax.swing.JLabel fecha_pantalla;
-    private javax.swing.JButton ingresarproveedores;
-    private javax.swing.JButton ingresarproveedores1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -356,10 +354,10 @@ boton_controlcd.setVisible(true);        // TODO add your handling code here:
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton productos;
+    private javax.swing.JButton proveedores;
     private javax.swing.JButton usuario;
-    private javax.swing.JButton usuario2;
     private javax.swing.JButton usuario3;
-    private javax.swing.JButton usuario4;
     private javax.swing.JButton usuario5;
     // End of variables declaration//GEN-END:variables
 }
