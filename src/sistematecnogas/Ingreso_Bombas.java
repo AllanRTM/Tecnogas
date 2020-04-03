@@ -102,6 +102,16 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
         });
 
         btnAtras.setText("Atrás");
+        btnAtras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        btnAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasActionPerformed(evt);
+            }
+        });
 
         btnModificar.setText("Modificar");
 
@@ -126,12 +136,6 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(tblBombas);
-        jButton2.setText("Atrás");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
-            }
-        });
 
         radioBtnEstado.setText("Activo");
         radioBtnEstado.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -286,6 +290,10 @@ panelcentral botonatras = new panelcentral();
 botonatras.setVisible(true);
 this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAtrasActionPerformed
 
     /**
      * @param args the command line arguments
