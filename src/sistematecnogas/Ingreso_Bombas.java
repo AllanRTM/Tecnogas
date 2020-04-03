@@ -23,6 +23,7 @@ import servicios.conexion;
 public class Ingreso_Bombas extends javax.swing.JFrame {
     conexion cc = new conexion();
     Connection cn = cc.conexion();
+    Statement sent;
      public static String fecha(){
         Date fecha=new Date();
         SimpleDateFormat formatoFecha=new SimpleDateFormat("dd/MM/YYYY");
@@ -34,6 +35,19 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
     public Ingreso_Bombas() {
         initComponents();
         lblFecha.setText(fecha());
+        try{
+        sent=cn.createStatement();
+        String sql="SELECT * FROM `estado_bombas` ";
+             java.sql.Statement st=cn.createStatement();
+        java.sql.ResultSet rs=sent.executeQuery(sql);
+        comboEstado.addItem("seleccione estado");
+        while(rs.next()){
+         
+            this.comboEstado.addItem(rs.getString("estado"));
+        }
+        }catch(Exception e){
+            
+        }
     }
 
     /**
@@ -67,7 +81,7 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
         tblBombas = new javax.swing.JTable();
         txtIDbomba = new javax.swing.JTextField();
         txtNumBomba = new javax.swing.JTextField();
-        radioBtnEstado = new javax.swing.JRadioButton();
+        comboEstado = new javax.swing.JComboBox<>();
 
         textfield_id_bomba3.setText("textField2");
 
@@ -86,7 +100,7 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Ingreso de bombas");
 
-        jLabel2.setText("ID_Bomba:");
+        jLabel2.setText("ID Bomba:");
 
         jLabel3.setText("Numero de bomba:");
 
@@ -137,13 +151,6 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblBombas);
 
-        radioBtnEstado.setText("Activo");
-        radioBtnEstado.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                radioBtnEstadoMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -168,11 +175,9 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
                                         .addGap(30, 30, 30)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(lblFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(radioBtnEstado)
-                                                .addGap(0, 0, Short.MAX_VALUE))
                                             .addComponent(txtIDbomba)
-                                            .addComponent(txtNumBomba))))
+                                            .addComponent(txtNumBomba)
+                                            .addComponent(comboEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
@@ -204,11 +209,11 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(txtNumBomba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(7, 7, 7)
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(radioBtnEstado))
-                .addGap(19, 19, 19)
+                    .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(lblFecha))
@@ -236,12 +241,14 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
             PreparedStatement pst  = cn.prepareStatement(sql);
             pst.setString(1, txtIDbomba.getText());
             pst.setString(2, txtNumBomba.getText());
-            if(radioBtnEstado.isEnabled()){
-            radioBtnEstado.setText("Activo");
-        }else{
-            radioBtnEstado.setText("Inactivo");
-        }
-            pst.setString(3, radioBtnEstado.getText());
+//            if(radioBtnEstado.isEnabled()){
+//            radioBtnEstado.setText("Activo");
+//        }else{
+//            radioBtnEstado.setText("Inactivo");
+//        }
+//            pst.setString(3, radioBtnEstado.getText());
+            String value=comboEstado.getSelectedItem().toString();
+            pst.setString(3, value);
             pst.setString(4, lblFecha.getText());
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "Registro Guardado con Exito");
@@ -275,15 +282,6 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
             Logger.getLogger(Categoria.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnMostrarTodoActionPerformed
-
-    private void radioBtnEstadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioBtnEstadoMouseClicked
-        // TODO add your handling code here:
-        if(radioBtnEstado.isEnabled()){
-            radioBtnEstado.setText("Activo");
-        }else{
-            radioBtnEstado.setText("Inactivo");
-        }
-    }//GEN-LAST:event_radioBtnEstadoMouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
 panelcentral botonatras = new panelcentral();
@@ -336,6 +334,7 @@ this.dispose();// TODO add your handling code here:
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnMostrarTodo;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox<String> comboEstado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel18;
@@ -349,7 +348,6 @@ this.dispose();// TODO add your handling code here:
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblFecha;
-    private javax.swing.JRadioButton radioBtnEstado;
     private javax.swing.JTable tblBombas;
     private java.awt.TextField textfield_id_bomba3;
     private javax.swing.JTextField txtIDbomba;

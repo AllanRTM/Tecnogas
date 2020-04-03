@@ -22,6 +22,7 @@ import servicios.conexion;
 
 
 public class ingresarUsuario extends javax.swing.JFrame {
+    Statement sent;
     public static String fecha(){
         Date fecha=new Date();
         SimpleDateFormat formatoFecha=new SimpleDateFormat("dd/MM/YYYY");
@@ -32,6 +33,33 @@ public class ingresarUsuario extends javax.swing.JFrame {
         initComponents();
         lblFechaCreacion.setText(fecha());
         lblFechaActualizacion.setText(fecha());
+                 try{
+        sent=cn.createStatement();
+        String sql="SELECT * FROM `estado_usuario` ";
+             java.sql.Statement st=cn.createStatement();
+        java.sql.ResultSet rs=sent.executeQuery(sql);
+        comboEstado.addItem("seleccione estado");
+        while(rs.next()){
+         
+            this.comboEstado.addItem(rs.getString("estado"));
+        }
+        }catch(Exception e){
+            
+        }
+        
+        try{
+        sent=cn.createStatement();
+        String sql="SELECT * FROM `tipo_usuario` ";
+             java.sql.Statement st=cn.createStatement();
+        java.sql.ResultSet rs=sent.executeQuery(sql);
+        comboEstado.addItem("seleccione tipo");
+        while(rs.next()){
+         
+            this.comboEstado.addItem(rs.getString("tipo"));
+        }
+        }catch(Exception e){
+            
+        }
     }
 
     /**
@@ -58,8 +86,8 @@ public class ingresarUsuario extends javax.swing.JFrame {
         txtID = new javax.swing.JTextField();
         lblFechaCreacion = new javax.swing.JLabel();
         lblFechaActualizacion = new javax.swing.JLabel();
-        RadioBtnAdmin = new javax.swing.JRadioButton();
-        radioBtnEstado = new javax.swing.JRadioButton();
+        comboTipo = new javax.swing.JComboBox<>();
+        comboEstado = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,20 +119,6 @@ public class ingresarUsuario extends javax.swing.JFrame {
 
         lblFechaActualizacion.setText("dd/MM/YYYY");
 
-        RadioBtnAdmin.setText("Administrador");
-        RadioBtnAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                RadioBtnAdminMouseClicked(evt);
-            }
-        });
-
-        radioBtnEstado.setText("Activo");
-        radioBtnEstado.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                radioBtnEstadoMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,13 +146,13 @@ public class ingresarUsuario extends javax.swing.JFrame {
                                     .addComponent(txtPassword)
                                     .addComponent(txtNombre)
                                     .addComponent(txtID)
+                                    .addComponent(comboTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(RadioBtnAdmin)
                                             .addComponent(lblFechaCreacion)
-                                            .addComponent(lblFechaActualizacion)
-                                            .addComponent(radioBtnEstado))
-                                        .addGap(0, 22, Short.MAX_VALUE)))))
+                                            .addComponent(lblFechaActualizacion))
+                                        .addGap(0, 53, Short.MAX_VALUE))
+                                    .addComponent(comboEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(26, 26, 26))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
@@ -161,19 +175,19 @@ public class ingresarUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(RadioBtnAdmin))
-                .addGap(26, 26, 26)
+                    .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(radioBtnEstado))
-                .addGap(32, 32, 32)
+                    .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(lblFechaCreacion))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(lblFechaActualizacion))
@@ -195,18 +209,20 @@ public class ingresarUsuario extends javax.swing.JFrame {
             pst.setString(1, txtID.getText());
             pst.setString(2, txtNombre.getText());
             pst.setString(3, txtPassword.getText());
-            if(RadioBtnAdmin.isEnabled()){
-            RadioBtnAdmin.setText("Administrador");
-        }else{
-            RadioBtnAdmin.setText("Estandar");
-        }
-            pst.setString(4, RadioBtnAdmin.getText());
-            if(radioBtnEstado.isEnabled()){
-            radioBtnEstado.setText("Activo");
-        }else{
-            radioBtnEstado.setText("Inactivo");
-        }
-            pst.setString(5, radioBtnEstado.getText());
+//            if(RadioBtnAdmin.isEnabled()){
+//            RadioBtnAdmin.setText("Administrador");
+//        }else{
+//            RadioBtnAdmin.setText("Estandar");
+//        }
+    String value=comboTipo.getSelectedItem().toString();
+            pst.setString(4, value);
+//            if(radioBtnEstado.isEnabled()){
+//            radioBtnEstado.setText("Activo");
+//        }else{
+//            radioBtnEstado.setText("Inactivo");
+//        }
+            String value1=comboEstado.getSelectedItem().toString();
+            pst.setString(5, value1);
             pst.setString(6, lblFechaCreacion.getText());
             pst.setString(7, lblFechaActualizacion.getText());
             
@@ -224,24 +240,6 @@ public class ingresarUsuario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "INGRESA TODOS LOS VALORES CORRECTAMENTE");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void radioBtnEstadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioBtnEstadoMouseClicked
-        // TODO add your handling code here:
-        if(radioBtnEstado.isEnabled()){
-            radioBtnEstado.setText("Activo");
-        }else{
-            radioBtnEstado.setText("Inactivo");
-        }
-    }//GEN-LAST:event_radioBtnEstadoMouseClicked
-
-    private void RadioBtnAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RadioBtnAdminMouseClicked
-        // TODO add your handling code here:
-        if(RadioBtnAdmin.isEnabled()){
-            RadioBtnAdmin.setText("Administrador");
-        }else{
-            RadioBtnAdmin.setText("Estandar");
-        }
-    }//GEN-LAST:event_RadioBtnAdminMouseClicked
 
     /**
      * @param args the command line arguments
@@ -282,8 +280,9 @@ public class ingresarUsuario extends javax.swing.JFrame {
 Connection cn = cc.conexion();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton RadioBtnAdmin;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox<String> comboEstado;
+    private javax.swing.JComboBox<String> comboTipo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -295,7 +294,6 @@ Connection cn = cc.conexion();
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel lblFechaActualizacion;
     private javax.swing.JLabel lblFechaCreacion;
-    private javax.swing.JRadioButton radioBtnEstado;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JPasswordField txtPassword;
