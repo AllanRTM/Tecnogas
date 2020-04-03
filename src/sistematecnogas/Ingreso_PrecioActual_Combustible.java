@@ -5,7 +5,7 @@
  */
 package sistematecnogas;
 
-import com.mysql.jdbc.PreparedStatement;
+import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import static java.time.Clock.system;
@@ -29,7 +29,7 @@ public class Ingreso_PrecioActual_Combustible extends javax.swing.JFrame {
     private String contraseña="1234";
     public Connection con;
     
-    private PreparedStatement ps;
+    PreparedStatement ps;
     ResultSet rs;
     
     public Connection conexion(){
