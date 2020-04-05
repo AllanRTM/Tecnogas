@@ -7,6 +7,7 @@ package sistematecnogas;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import javax.swing.ImageIcon;
 
 
 
@@ -25,6 +26,8 @@ public class panelcentral extends javax.swing.JFrame {
         initComponents();
         //fecha_pantalla.setText(fecha());
         fecha_pantalla.setText(fecha());
+         setTitle("Panel Central");
+        setIconImage(new ImageIcon(getClass().getResource("/Imagen/logo_tecnogas_transp.png")).getImage());
     }
 
     /**

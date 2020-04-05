@@ -17,6 +17,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import servicios.conexion;
 import java.text.SimpleDateFormat;
+import javax.swing.ImageIcon;
 
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -61,6 +62,8 @@ super.paintComponent(grafico);
         setLocationRelativeTo(null);
         
         fecha_pantalla.setText(fecha());
+        setTitle("Pantalla de ingreso");
+        setIconImage(new ImageIcon(getClass().getResource("/Imagen/logo_tecnogas_transp.png")).getImage());
         
         
         
@@ -155,7 +158,7 @@ super.paintComponent(grafico);
         label_iconotecnogas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/logo_tecnogas_transp.png"))); // NOI18N
         label_iconotecnogas.setText("jLabel4");
         label_iconotecnogas.setPreferredSize(new java.awt.Dimension(270, 134));
-        getContentPane().add(label_iconotecnogas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 230, 100));
+        getContentPane().add(label_iconotecnogas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 230, 100));
 
         label_titulobienvenidos.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         label_titulobienvenidos.setForeground(new java.awt.Color(0, 51, 102));
