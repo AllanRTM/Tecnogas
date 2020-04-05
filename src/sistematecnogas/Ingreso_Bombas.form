@@ -79,12 +79,9 @@
                                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="lblFecha" max="32767" attributes="0"/>
-                                          <Group type="102" attributes="0">
-                                              <Component id="radioBtnEstado" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          </Group>
                                           <Component id="txtIDbomba" alignment="0" max="32767" attributes="0"/>
                                           <Component id="txtNumBomba" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="comboEstado" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -133,12 +130,12 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="radioBtnEstado" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="comboEstado" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblFecha" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -170,7 +167,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="ID_Bomba:"/>
+        <Property name="text" type="java.lang.String" value="ID Bomba:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
@@ -245,13 +242,15 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtNumBomba">
     </Component>
-    <Component class="javax.swing.JRadioButton" name="radioBtnEstado">
+    <Component class="javax.swing.JComboBox" name="comboEstado">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Activo"/>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="radioBtnEstadoMouseClicked"/>
-      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

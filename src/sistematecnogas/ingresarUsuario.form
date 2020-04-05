@@ -52,15 +52,15 @@
                                   <Component id="txtPassword" alignment="0" max="32767" attributes="0"/>
                                   <Component id="txtNombre" alignment="0" max="32767" attributes="0"/>
                                   <Component id="txtID" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="comboTipo" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="RadioBtnAdmin" min="-2" max="-2" attributes="0"/>
                                           <Component id="lblFechaCreacion" min="-2" max="-2" attributes="0"/>
                                           <Component id="lblFechaActualizacion" min="-2" max="-2" attributes="0"/>
-                                          <Component id="radioBtnEstado" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="53" max="32767" attributes="0"/>
                                   </Group>
+                                  <Component id="comboEstado" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -94,22 +94,22 @@
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtPassword" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="RadioBtnAdmin" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="comboTipo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="radioBtnEstado" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="comboEstado" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblFechaCreacion" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="23" max="32767" attributes="0"/>
+              <EmptySpace pref="19" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblFechaActualizacion" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -189,21 +189,25 @@
         <Property name="text" type="java.lang.String" value="dd/MM/YYYY"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="RadioBtnAdmin">
+    <Component class="javax.swing.JComboBox" name="comboTipo">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Administrador"/>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="RadioBtnAdminMouseClicked"/>
-      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="radioBtnEstado">
+    <Component class="javax.swing.JComboBox" name="comboEstado">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Activo"/>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="radioBtnEstadoMouseClicked"/>
-      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
