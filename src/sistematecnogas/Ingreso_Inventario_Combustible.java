@@ -5,17 +5,95 @@
  */
 package sistematecnogas;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Wilfredo Serrano
  */
 public class Ingreso_Inventario_Combustible extends javax.swing.JFrame {
 
+    
+    
+    
+    //valores_conection
+    
+    private String driver="com.mysql.jc.jdbc.Driver";
+    private String cadenaConexion="jdbc:mysql://localhost:3306/tecnogas"+"?useTimezone=true&serverTimezone=UTC";
+    private String usuario="root";
+    private String contraseña="1234";
+    public Connection con;
+    
+    PreparedStatement ps;
+    ResultSet rs;
+    
+    public Connection conexion(){
+        try {
+            con=DriverManager.getConnection(cadenaConexion,usuario,contraseña);
+       //     JOptionPane.showMessageDialog(null,"Exito al establecer conexion con la base de datos");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"No se pudo establecer conexion con la base de datos"+ e.getMessage());
+        }
+        return con;
+             
+    }
+    
+    public void limpiarcajas1(){
+    //limpiar cajas diesel
+    caja_recibido_diesel.setText(null);
+    caja_invinicial_diesel.setText(null);
+    caja_despa_diesel.setText(null);
+    caja_invfinal_diesel.setText(null);
+    caja_litfaltantes_diesel.setText(null);
+    recibido_litro_diesel.setText(null);
+    invinicial_litro_diesel.setText(null);
+    despachado_litro_diesel.setText(null);
+    invfinal_litro_diesel.setText(null);
+    litfaltantes_litro_diesel.setText(null);
+    caja_plg_recibido.setText(null);
+    caja_plg_invinicial.setText(null);
+    caja_plg_despachado.setText(null);
+    caja_plg_invfinal.setText(null);
+    caja_plg_litfaltantes.setText(null);
+    
+    };
+    
+    public void limpiarcajas2(){
+    //limpiar cajas super
+    caja1_super.setText(null);
+    caja2_super.setText(null);
+    caja3_super.setText(null);
+    caja4_super.setText(null);
+    caja5_super.setText(null);
+    caja1_litro.setText(null);
+    caja2_litro.setText(null);
+    caja3_litro.setText(null);
+    caja4_litro.setText(null);
+    caja5_litro.setText(null);
+    caja1_plg_super.setText(null);
+    caja2_plg_super.setText(null);
+    caja3_plg_super.setText(null);
+    caja4_plg_super.setText(null);
+    caja5_plg_super.setText(null);
+    
+    };
+    
+    
     /**
      * Creates new form Ingreso_Inventario_Combustible
      */
     public Ingreso_Inventario_Combustible() {
         initComponents();
+        
+        setTitle("Inventario de combustible");
+        setIconImage(new ImageIcon(getClass().getResource("/Imagen/logo_tecnogas_transp.png")).getImage());
+        fecha_pantalla1.setText(fecha());
     }
 
     /**
@@ -28,6 +106,8 @@ public class Ingreso_Inventario_Combustible extends javax.swing.JFrame {
     private void initComponents() {
 
         textField31 = new java.awt.TextField();
+        jLabel12 = new javax.swing.JLabel();
+        fecha_pantalla = new javax.swing.JLabel();
         titulo1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -37,59 +117,67 @@ public class Ingreso_Inventario_Combustible extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        textField1 = new java.awt.TextField();
-        textField2 = new java.awt.TextField();
-        textField3 = new java.awt.TextField();
-        textField4 = new java.awt.TextField();
-        textField5 = new java.awt.TextField();
-        textField6 = new java.awt.TextField();
-        textField7 = new java.awt.TextField();
-        textField8 = new java.awt.TextField();
-        textField9 = new java.awt.TextField();
+        caja_recibido_diesel = new java.awt.TextField();
+        recibido_litro_diesel = new java.awt.TextField();
+        caja_plg_recibido = new java.awt.TextField();
+        caja_invinicial_diesel = new java.awt.TextField();
+        invinicial_litro_diesel = new java.awt.TextField();
+        caja_plg_invinicial = new java.awt.TextField();
+        caja_despa_diesel = new java.awt.TextField();
+        despachado_litro_diesel = new java.awt.TextField();
+        caja_plg_despachado = new java.awt.TextField();
         jLabel8 = new javax.swing.JLabel();
-        textField10 = new java.awt.TextField();
-        textField11 = new java.awt.TextField();
-        textField12 = new java.awt.TextField();
-        textField13 = new java.awt.TextField();
+        caja_invfinal_diesel = new java.awt.TextField();
+        invfinal_litro_diesel = new java.awt.TextField();
+        caja_plg_invfinal = new java.awt.TextField();
+        caja_litfaltantes_diesel = new java.awt.TextField();
         jLabel10 = new javax.swing.JLabel();
-        textField14 = new java.awt.TextField();
-        textField15 = new java.awt.TextField();
+        litfaltantes_litro_diesel = new java.awt.TextField();
+        caja_plg_litfaltantes = new java.awt.TextField();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        textField16 = new java.awt.TextField();
-        jLabel13 = new javax.swing.JLabel();
-        textField17 = new java.awt.TextField();
-        jLabel14 = new javax.swing.JLabel();
-        textField18 = new java.awt.TextField();
-        textField19 = new java.awt.TextField();
-        jLabel15 = new javax.swing.JLabel();
-        textField20 = new java.awt.TextField();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        textField21 = new java.awt.TextField();
-        textField22 = new java.awt.TextField();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        textField23 = new java.awt.TextField();
-        textField24 = new java.awt.TextField();
-        textField25 = new java.awt.TextField();
-        textField26 = new java.awt.TextField();
-        textField27 = new java.awt.TextField();
-        textField28 = new java.awt.TextField();
-        jLabel20 = new javax.swing.JLabel();
-        textField29 = new java.awt.TextField();
-        textField30 = new java.awt.TextField();
-        button1_diesel__modi = new java.awt.Button();
-        button1_diesel_ingresar = new java.awt.Button();
-        button4 = new java.awt.Button();
-        button2 = new java.awt.Button();
+        modificar_insert = new java.awt.Button();
+        ingresar_diesel = new java.awt.Button();
+        atras = new java.awt.Button();
         scrollPane1 = new java.awt.ScrollPane();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         textField32 = new java.awt.TextField();
         textField33 = new java.awt.TextField();
+        Conversion_button = new java.awt.Button();
+        Conversion_button1 = new java.awt.Button();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        caja2_super = new java.awt.TextField();
+        caja2_litro = new java.awt.TextField();
+        caja2_plg_super = new java.awt.TextField();
+        caja3_super = new java.awt.TextField();
+        caja3_litro = new java.awt.TextField();
+        caja3_plg_super = new java.awt.TextField();
+        caja4_super = new java.awt.TextField();
+        caja4_litro = new java.awt.TextField();
+        caja4_plg_super = new java.awt.TextField();
+        caja5_super = new java.awt.TextField();
+        caja5_litro = new java.awt.TextField();
+        caja5_plg_super = new java.awt.TextField();
+        caja1_super = new java.awt.TextField();
+        caja1_litro = new java.awt.TextField();
+        caja1_plg_super = new java.awt.TextField();
+        ingresar_diesel2 = new java.awt.Button();
+        jLabel13 = new javax.swing.JLabel();
+        fecha_pantalla1 = new javax.swing.JLabel();
 
         textField31.setText("textField31");
+
+        jLabel12.setText("Fecha:");
+
+        fecha_pantalla.setText("dd-MM-YYYY");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,115 +206,52 @@ public class Ingreso_Inventario_Combustible extends javax.swing.JFrame {
 
         jLabel9.setText("Recibido     ");
 
-        textField1.setText("textField1");
-        textField1.addActionListener(new java.awt.event.ActionListener() {
+        caja_recibido_diesel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField1ActionPerformed(evt);
+                caja_recibido_dieselActionPerformed(evt);
             }
         });
 
-        textField2.setText("textField2");
+        recibido_litro_diesel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                recibido_litro_dieselActionPerformed(evt);
+            }
+        });
 
-        textField3.setText("textField3");
-
-        textField4.setText("textField1");
-
-        textField5.setText("textField2");
-
-        textField6.setText("textField3");
-
-        textField7.setText("textField1");
-
-        textField8.setText("textField2");
-
-        textField9.setText("textField3");
+        caja_plg_recibido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                caja_plg_recibidoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                caja_plg_recibidoKeyTyped(evt);
+            }
+        });
 
         jLabel8.setText("Lts. Faltantes");
 
-        textField10.setText("textField1");
-
-        textField11.setText("textField2");
-
-        textField12.setText("textField3");
-
-        textField13.setText("textField1");
-
         jLabel10.setText("Inv. Final");
-
-        textField14.setText("textField2");
-
-        textField15.setText("textField3");
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setText("Super");
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel12.setText("Inventario");
+        modificar_insert.setLabel("Modificar");
 
-        textField16.setText("textField1");
-
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel13.setText("Galon");
-
-        textField17.setText("textField2");
-
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel14.setText("Litro");
-
-        textField18.setText("textField3");
-
-        textField19.setText("textField3");
-
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel15.setText("Plg3");
-
-        textField20.setText("textField1");
-
-        jLabel16.setText("Inv. Inicial");
-
-        jLabel17.setText("Inv. Final");
-
-        textField21.setText("textField2");
-
-        textField22.setText("textField3");
-
-        jLabel18.setText("Despachado");
-
-        jLabel19.setText("Recibido     ");
-
-        textField23.setText("textField1");
-
-        textField24.setText("textField2");
-
-        textField25.setText("textField3");
-
-        textField26.setText("textField1");
-
-        textField27.setText("textField2");
-
-        textField28.setText("textField3");
-
-        jLabel20.setText("Lts. Faltantes");
-
-        textField29.setText("textField1");
-
-        textField30.setText("textField2");
-
-        button1_diesel__modi.setLabel("Modificar");
-
-        button1_diesel_ingresar.setLabel("Ingresar");
-        button1_diesel_ingresar.addActionListener(new java.awt.event.ActionListener() {
+        ingresar_diesel.setLabel("Ingresar");
+        ingresar_diesel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1_diesel_ingresarActionPerformed(evt);
+                ingresar_dieselActionPerformed(evt);
             }
         });
 
-        button4.setLabel("Ingresar");
-
-        button2.setLabel("Atras");
-        button2.addActionListener(new java.awt.event.ActionListener() {
+        atras.setLabel("Atras");
+        atras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                atrasMouseClicked(evt);
+            }
+        });
+        atras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button2ActionPerformed(evt);
+                atrasActionPerformed(evt);
             }
         });
 
@@ -236,9 +261,79 @@ public class Ingreso_Inventario_Combustible extends javax.swing.JFrame {
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel22.setText("Plg3 Totales:");
 
-        textField32.setText("textField32");
+        Conversion_button.setLabel("Conversion");
+        Conversion_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Conversion_buttonActionPerformed(evt);
+            }
+        });
 
-        textField33.setText("textField32");
+        Conversion_button1.setLabel("Conversion");
+        Conversion_button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Conversion_button1ActionPerformed(evt);
+            }
+        });
+
+        jLabel23.setText("Lts. Faltantes");
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel24.setText("Inventario");
+
+        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel25.setText("Galon");
+
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel26.setText("Litro");
+
+        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel27.setText("Plg3");
+
+        jLabel28.setText("Inv. Inicial");
+
+        jLabel29.setText("Inv. Final");
+
+        jLabel30.setText("Despachado");
+
+        jLabel31.setText("Recibido     ");
+
+        caja2_plg_super.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                caja2_plg_superActionPerformed(evt);
+            }
+        });
+
+        caja1_super.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                caja1_superActionPerformed(evt);
+            }
+        });
+
+        caja1_litro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                caja1_litroActionPerformed(evt);
+            }
+        });
+
+        caja1_plg_super.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                caja1_plg_superKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                caja1_plg_superKeyTyped(evt);
+            }
+        });
+
+        ingresar_diesel2.setLabel("Ingresar");
+        ingresar_diesel2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ingresar_diesel2ActionPerformed(evt);
+            }
+        });
+
+        jLabel13.setText("Fecha:");
+
+        fecha_pantalla1.setText("dd-MM-YYYY");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -247,277 +342,583 @@ public class Ingreso_Inventario_Combustible extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(47, 47, 47)
-                                .addComponent(jLabel3)
-                                .addGap(35, 35, 35)
-                                .addComponent(jLabel4)
-                                .addGap(35, 35, 35)
-                                .addComponent(jLabel5))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel9)
-                                    .addGap(57, 57, 57)
-                                    .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(textField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(textField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel6)
-                                        .addComponent(jLabel7)
-                                        .addComponent(jLabel10)
-                                        .addComponent(jLabel8))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(textField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(textField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(textField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(textField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(textField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(textField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(textField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(textField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(textField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(textField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(textField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(textField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addComponent(button1_diesel_ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel11)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel12)
-                                    .addGap(47, 47, 47)
-                                    .addComponent(jLabel13)
-                                    .addGap(35, 35, 35)
-                                    .addComponent(jLabel14)
-                                    .addGap(35, 35, 35)
-                                    .addComponent(jLabel15))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jLabel19)
-                                        .addGap(57, 57, 57)
-                                        .addComponent(textField23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(textField24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(textField25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel16)
-                                            .addComponent(jLabel18))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(textField26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(textField27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(textField28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(textField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(textField17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(textField18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel17)
-                                    .addComponent(jLabel20))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(textField20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(textField21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(textField22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(textField29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(textField30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(textField19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(titulo1))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(scrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel22)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textField33, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(button1_diesel__modi, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(modificar_insert, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel21)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textField32, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel21)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel22)
+                                .addGap(33, 33, 33)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textField32, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textField33, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(54, 54, 54))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel8)
+                                            .addComponent(jLabel9)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jLabel7)
+                                            .addComponent(jLabel10)
+                                            .addComponent(jLabel2))
+                                        .addGap(26, 26, 26)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(caja_invinicial_diesel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(caja_despa_diesel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(caja_invfinal_diesel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(caja_litfaltantes_diesel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(invinicial_litro_diesel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(despachado_litro_diesel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(invfinal_litro_diesel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(litfaltantes_litro_diesel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                            .addComponent(caja_recibido_diesel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                            .addComponent(jLabel3)
+                                                            .addGap(36, 36, 36)))
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel4)
+                                                        .addComponent(recibido_litro_diesel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(Conversion_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(caja_plg_litfaltantes, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(caja_plg_invinicial, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(caja_plg_recibido, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(caja_plg_despachado, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(caja_plg_invfinal, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jLabel5)
+                                            .addComponent(ingresar_diesel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel29)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel31)
+                                            .addComponent(jLabel24)
+                                            .addComponent(jLabel23)
+                                            .addComponent(jLabel28)
+                                            .addComponent(jLabel30))
+                                        .addGap(46, 46, 46)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(caja1_super, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jLabel25))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel26)
+                                                    .addComponent(caja1_litro, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(Conversion_button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(caja2_super, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(caja3_super, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(caja4_super, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(caja5_super, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(caja2_litro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(caja3_litro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(caja4_litro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(caja5_litro, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(caja5_plg_super, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(caja4_plg_super, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(caja2_plg_super, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(caja3_plg_super, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(caja1_plg_super, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(ingresar_diesel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel27)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel13)
+                                                .addGap(7, 7, 7)
+                                                .addComponent(fecha_pantalla1))))))
+                            .addComponent(atras, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(titulo1))
+                        .addContainerGap(34, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(titulo1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(titulo1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel13)
+                        .addComponent(fecha_pantalla1)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jLabel13)
-                                    .addComponent(jLabel14)
-                                    .addComponent(jLabel15))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel19)
-                                    .addComponent(textField23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textField24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textField25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel16)
-                                    .addComponent(textField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textField17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textField18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel18)
-                                .addGap(6, 6, 6))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(textField26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(textField27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(textField28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(textField29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(textField30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(textField19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(30, 30, 30))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textField20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textField21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textField22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel17)
-                                .addGap(16, 16, 16)
-                                .addComponent(jLabel20)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel9)
+                                .addGap(24, 24, 24)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(77, 77, 77))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel2)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel5))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(recibido_litro_diesel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(caja_recibido_diesel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(caja_plg_recibido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9)
-                                    .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(textField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7)
-                                .addGap(6, 6, 6))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(textField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(textField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(textField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel28)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(caja_invinicial_diesel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(invinicial_litro_diesel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(despachado_litro_diesel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(caja_despa_diesel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(caja_plg_despachado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jLabel30))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(caja_plg_invfinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(invfinal_litro_diesel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addComponent(caja_invfinal_diesel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(caja_plg_litfaltantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(litfaltantes_litro_diesel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(caja_litfaltantes_diesel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jLabel8)
+                                                    .addComponent(jLabel23))
+                                                .addGap(16, 16, 16))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(caja_plg_invinicial, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(Conversion_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(ingresar_diesel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(textField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(textField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(textField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(30, 30, 30))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addGap(16, 16, 16)
-                                .addComponent(jLabel8)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(button1_diesel_ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel24)
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel31)
+                                .addGap(81, 81, 81)
+                                .addComponent(jLabel29)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel25)
+                                        .addGap(168, 168, 168))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(2, 2, 2)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel27)
+                                            .addComponent(jLabel26))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(caja1_litro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(caja1_super, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(caja1_plg_super, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(caja2_super, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(caja2_litro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(caja2_plg_super, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(caja3_super, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(caja3_litro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(caja3_plg_super, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(caja4_super, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(caja4_litro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(caja4_plg_super, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(caja5_plg_super, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(caja5_litro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(caja5_super, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Conversion_button1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(ingresar_diesel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addGap(23, 23, 23)
                 .addComponent(scrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel21))
+                    .addComponent(modificar_insert, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addComponent(textField32, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel22)
-                                    .addComponent(textField33, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(12, 12, 12))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(button1_diesel__modi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(58, 58, 58)))
-                        .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(textField32, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel21))
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel22)
+                            .addComponent(textField33, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(22, 22, 22)
+                .addComponent(atras, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void button1_diesel_ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1_diesel_ingresarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_button1_diesel_ingresarActionPerformed
+    public static String fecha(){
+    Date fecha = new Date();
+    SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/YYYY");
+           return formatofecha.format(fecha);
+    }
+    
+    private void ingresar_dieselActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresar_dieselActionPerformed
+        Connection conection = null;
+        
+        
+       try{
+           conection = conexion();
+           ps = conection.prepareStatement("insert into inventario_combustible (recibido, recibido_plg3, inventario_inicial, inventario_inicial_plg3, litros_faltantes, litros_faltantes_plg3, despachado, despachado_plg3, inventario_final, inventario_final_plg3, id_usuario, id_tipo_combustible) values (?,?,?,?,?,?,?,?,?,?,?,?)");
+           ps.setString(1, caja_recibido_diesel.getText()); //1-
+           ps.setString(2, caja_plg_recibido.getText()); //2-
+           ps.setString(3, caja_invinicial_diesel.getText()); //3-
+           ps.setString(4, caja_plg_invinicial.getText()); //4-
+           
+           ps.setString(5, caja_litfaltantes_diesel.getText()); // 5-
+           ps.setString(6, caja_plg_litfaltantes.getText()); // 6-
+           ps.setString(7, caja_despa_diesel.getText()); // 7-
+           ps.setString(8, caja_plg_despachado.getText()); // 8-
+           
+           ps.setString(9, caja_invfinal_diesel.getText()); // 9-
+           ps.setString(10, caja_plg_invfinal.getText()); // 10-
+           
+           ps.setString(11, "1");
+           ps.setString(12, "2"); //tipo_combustible 2: diesel
+           
+           int resultado = ps.executeUpdate(); //ejecutamos
+           
+           if (resultado > 0){
+                JOptionPane.showMessageDialog(null, "Registro insertado correctamente.");
+                limpiarcajas1();
+                
+            }else{
+                    JOptionPane.showMessageDialog(null, "Error al insertar el registro.");}
+                            
+            conection.close();
+           
+       }catch(Exception ex){
+       System.err.println("Error. "+ex);
+       
+       }
+        
+    }//GEN-LAST:event_ingresar_dieselActionPerformed
 
-    private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField1ActionPerformed
+    private void caja_recibido_dieselActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caja_recibido_dieselActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textField1ActionPerformed
+    }//GEN-LAST:event_caja_recibido_dieselActionPerformed
 
-    private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
+    private void atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_button2ActionPerformed
+    }//GEN-LAST:event_atrasActionPerformed
+
+    private void caja_plg_recibidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja_plg_recibidoKeyReleased
+
+        
+        
+        
+        
+    }//GEN-LAST:event_caja_plg_recibidoKeyReleased
+
+    private void caja_plg_recibidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja_plg_recibidoKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_caja_plg_recibidoKeyTyped
+
+    private void Conversion_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Conversion_buttonActionPerformed
+       
+        
+        //convertir plg
+        Double a = Double.parseDouble(caja_recibido_diesel.getText());
+                
+        String convert1= Double.toString(a/61.024);
+        
+        caja_plg_recibido.setText(convert1);
+        
+        //2
+        
+        Double b = Double.parseDouble(caja_invinicial_diesel.getText());
+                
+        String convert2= Double.toString(b/61.024);
+        
+        caja_plg_invinicial.setText((convert2));
+        
+        //3
+        
+        Double c = Double.parseDouble(caja_despa_diesel.getText());
+                
+        String convert3= Double.toString(c/61.024);
+        
+        caja_plg_despachado.setText((convert3));
+        
+        //4
+        
+        Double d = Double.parseDouble(caja_invfinal_diesel.getText());
+                
+        String convert4= Double.toString(d/61.024);
+        
+        caja_plg_invfinal.setText((convert4));
+        
+        //5
+        
+        Double e = Double.parseDouble(caja_litfaltantes_diesel.getText());
+                
+        String convert5= Double.toString(e/61.024);
+        
+        caja_plg_litfaltantes.setText((convert5));
+        
+       
+        // convertir litros 3.78541
+        
+        Double f = Double.parseDouble(caja_litfaltantes_diesel.getText());
+                
+        String convert6= Double.toString(f/3.78541);
+        
+        recibido_litro_diesel.setText((convert6));
+        
+        //2
+        Double g = Double.parseDouble(caja_invinicial_diesel.getText());
+                
+        String convert7= Double.toString(g/3.78541);
+        
+        invinicial_litro_diesel.setText((convert7));
+        
+        //3
+        Double h = Double.parseDouble(caja_despa_diesel.getText());
+                
+        String convert8= Double.toString(h/3.78541);
+        
+        despachado_litro_diesel.setText((convert8));
+        
+        
+        //4
+        Double i = Double.parseDouble(caja_invfinal_diesel.getText());
+                
+        String convert9= Double.toString(i/3.78541);
+        
+        invfinal_litro_diesel.setText((convert9));
+        
+        
+        //5
+        Double j = Double.parseDouble(caja_litfaltantes_diesel.getText());
+                
+        String convert10= Double.toString(j/3.78541);
+        
+        litfaltantes_litro_diesel.setText((convert10));
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_Conversion_buttonActionPerformed
+
+    private void recibido_litro_dieselActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recibido_litro_dieselActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_recibido_litro_dieselActionPerformed
+
+    private void Conversion_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Conversion_button1ActionPerformed
+        //convertir plg
+        Double a2 = Double.parseDouble(caja1_super.getText());
+                
+        String converta= Double.toString(a2/61.024);
+        
+        caja1_plg_super.setText(converta);
+        
+        //2
+        
+        Double b2 = Double.parseDouble(caja2_super.getText());
+                
+        String convertb= Double.toString(b2/61.024);
+        
+        caja2_plg_super.setText((convertb));
+        
+        //3
+        
+        Double c2 = Double.parseDouble(caja3_super.getText());
+                
+        String convertc= Double.toString(c2/61.024);
+        
+        caja3_plg_super.setText((convertc));
+        
+        //4
+        
+        Double d2 = Double.parseDouble(caja4_super.getText());
+                
+        String convertd= Double.toString(d2/61.024);
+        
+        caja4_plg_super.setText((convertd));
+        
+        //5
+        
+        Double e2 = Double.parseDouble(caja5_super.getText());
+                
+        String converte= Double.toString(e2/61.024);
+        
+        caja5_plg_super.setText((converte));
+        
+       
+        // convertir litros 3.78541
+        
+        Double f2 = Double.parseDouble(caja1_super.getText());
+                
+        String convert6= Double.toString(f2/3.78541);
+        
+        caja1_litro.setText((convert6));
+        
+        //2
+        Double g2 = Double.parseDouble(caja2_super.getText());
+                
+        String convert7= Double.toString(g2/3.78541);
+        
+        caja2_litro.setText((convert7));
+        
+        //3
+        Double h2 = Double.parseDouble(caja3_super.getText());
+                
+        String convert8= Double.toString(h2/3.78541);
+        
+        caja3_litro.setText((convert8));
+        
+        
+        //4
+        Double i2 = Double.parseDouble(caja4_super.getText());
+                
+        String convert9= Double.toString(i2/3.78541);
+        
+        caja4_litro.setText((convert9));
+        
+        
+        //5
+        Double j2 = Double.parseDouble(caja5_super.getText());
+                
+        String convert10= Double.toString(j2/3.78541);
+        
+        caja5_litro.setText((convert10));
+        
+        
+    }//GEN-LAST:event_Conversion_button1ActionPerformed
+
+    private void caja1_superActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caja1_superActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_caja1_superActionPerformed
+
+    private void caja1_litroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caja1_litroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_caja1_litroActionPerformed
+
+    private void caja1_plg_superKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja1_plg_superKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_caja1_plg_superKeyReleased
+
+    private void caja1_plg_superKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja1_plg_superKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_caja1_plg_superKeyTyped
+
+    private void caja2_plg_superActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caja2_plg_superActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_caja2_plg_superActionPerformed
+
+    private void ingresar_diesel2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresar_diesel2ActionPerformed
+       
+           Connection conection = null;
+        
+        
+       try{
+           conection = conexion();
+           ps = conection.prepareStatement("insert into inventario_combustible (recibido, recibido_plg3, inventario_inicial, inventario_inicial_plg3, litros_faltantes, litros_faltantes_plg3, despachado, despachado_plg3, inventario_final, inventario_final_plg3, id_usuario, id_tipo_combustible) values (?,?,?,?,?,?,?,?,?,?,?,?)");
+           ps.setString(1, caja1_super.getText()); //1-
+           ps.setString(2, caja1_plg_super.getText()); //2-
+           ps.setString(3, caja2_super.getText()); //3-
+           ps.setString(4, caja2_plg_super.getText()); //4-
+           
+           ps.setString(5, caja5_super.getText()); // 5-
+           ps.setString(6, caja5_plg_super.getText()); // 6-
+           ps.setString(7, caja3_super.getText()); // 7-
+           ps.setString(8, caja3_plg_super.getText()); // 8-
+           
+           ps.setString(9, caja4_super.getText()); // 9-
+           ps.setString(10, caja4_plg_super.getText()); // 10-
+           
+           ps.setString(11, "1");
+           ps.setString(12, "1"); //tipo_combustible 1: super
+           
+           int resultado = ps.executeUpdate(); //ejecutamos
+           
+           if (resultado > 0){
+                JOptionPane.showMessageDialog(null, "Registro insertado correctamente.");
+                limpiarcajas2();
+                
+            }else{
+                    JOptionPane.showMessageDialog(null, "Error al insertar el registro.");}
+                            
+            conection.close();
+           
+       }catch(Exception ex){
+       System.err.println("Error. "+ex);
+       
+       }
+        
+        
+       
+        
+        
+        
+    }//GEN-LAST:event_ingresar_diesel2ActionPerformed
+
+    private void atrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atrasMouseClicked
+        Control_Combustible_Diario boton_Control_Combustible_Diario = new Control_Combustible_Diario();
+        boton_Control_Combustible_Diario.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_atrasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -555,66 +956,72 @@ public class Ingreso_Inventario_Combustible extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button button1_diesel__modi;
-    private java.awt.Button button1_diesel_ingresar;
-    private java.awt.Button button2;
-    private java.awt.Button button4;
+    private java.awt.Button Conversion_button;
+    private java.awt.Button Conversion_button1;
+    private java.awt.Button atras;
+    private java.awt.TextField caja1_litro;
+    private java.awt.TextField caja1_plg_super;
+    private java.awt.TextField caja1_super;
+    private java.awt.TextField caja2_litro;
+    private java.awt.TextField caja2_plg_super;
+    private java.awt.TextField caja2_super;
+    private java.awt.TextField caja3_litro;
+    private java.awt.TextField caja3_plg_super;
+    private java.awt.TextField caja3_super;
+    private java.awt.TextField caja4_litro;
+    private java.awt.TextField caja4_plg_super;
+    private java.awt.TextField caja4_super;
+    private java.awt.TextField caja5_litro;
+    private java.awt.TextField caja5_plg_super;
+    private java.awt.TextField caja5_super;
+    private java.awt.TextField caja_despa_diesel;
+    private java.awt.TextField caja_invfinal_diesel;
+    private java.awt.TextField caja_invinicial_diesel;
+    private java.awt.TextField caja_litfaltantes_diesel;
+    private java.awt.TextField caja_plg_despachado;
+    private java.awt.TextField caja_plg_invfinal;
+    private java.awt.TextField caja_plg_invinicial;
+    private java.awt.TextField caja_plg_litfaltantes;
+    private java.awt.TextField caja_plg_recibido;
+    private java.awt.TextField caja_recibido_diesel;
+    private java.awt.TextField despachado_litro_diesel;
+    private javax.swing.JLabel fecha_pantalla;
+    private javax.swing.JLabel fecha_pantalla1;
+    private java.awt.Button ingresar_diesel;
+    private java.awt.Button ingresar_diesel2;
+    private java.awt.TextField invfinal_litro_diesel;
+    private java.awt.TextField invinicial_litro_diesel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private java.awt.TextField litfaltantes_litro_diesel;
+    private java.awt.Button modificar_insert;
+    private java.awt.TextField recibido_litro_diesel;
     private java.awt.ScrollPane scrollPane1;
-    private java.awt.TextField textField1;
-    private java.awt.TextField textField10;
-    private java.awt.TextField textField11;
-    private java.awt.TextField textField12;
-    private java.awt.TextField textField13;
-    private java.awt.TextField textField14;
-    private java.awt.TextField textField15;
-    private java.awt.TextField textField16;
-    private java.awt.TextField textField17;
-    private java.awt.TextField textField18;
-    private java.awt.TextField textField19;
-    private java.awt.TextField textField2;
-    private java.awt.TextField textField20;
-    private java.awt.TextField textField21;
-    private java.awt.TextField textField22;
-    private java.awt.TextField textField23;
-    private java.awt.TextField textField24;
-    private java.awt.TextField textField25;
-    private java.awt.TextField textField26;
-    private java.awt.TextField textField27;
-    private java.awt.TextField textField28;
-    private java.awt.TextField textField29;
-    private java.awt.TextField textField3;
-    private java.awt.TextField textField30;
     private java.awt.TextField textField31;
     private java.awt.TextField textField32;
     private java.awt.TextField textField33;
-    private java.awt.TextField textField4;
-    private java.awt.TextField textField5;
-    private java.awt.TextField textField6;
-    private java.awt.TextField textField7;
-    private java.awt.TextField textField8;
-    private java.awt.TextField textField9;
     private javax.swing.JLabel titulo1;
     // End of variables declaration//GEN-END:variables
 }

@@ -12,6 +12,7 @@ import static java.time.Clock.system;
 import javax.swing.JOptionPane;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.ImageIcon;
 import static sistematecnogas.Login.fecha;
 
 /**
@@ -55,6 +56,8 @@ public class Ingreso_PrecioActual_Combustible extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         
         fecha_pantalla.setText(fecha());
+        setTitle("Precio Actual de Combustible");
+        setIconImage(new ImageIcon(getClass().getResource("/Imagen/logo_tecnogas_transp.png")).getImage());
         
     }
 
@@ -124,10 +127,21 @@ public class Ingreso_PrecioActual_Combustible extends javax.swing.JFrame {
                 jButton1MouseClicked(evt);
             }
         });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Litro");
 
         jLabel9.setText("Litro");
+
+        caja_litro_super.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                caja_litro_superActionPerformed(evt);
+            }
+        });
 
         jLabel10.setText("L.");
 
@@ -171,8 +185,7 @@ public class Ingreso_PrecioActual_Combustible extends javax.swing.JFrame {
                                 .addComponent(jButton1)
                                 .addGap(335, 335, 335)
                                 .addComponent(buttom_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel2)
-                            .addComponent(scroll_panel_precioscombustible, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttom_limpiar, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
                         .addContainerGap())
@@ -208,7 +221,10 @@ public class Ingreso_PrecioActual_Combustible extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(buttom_insert_preciosuper, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING))))
-                        .addGap(38, 38, 38))))
+                        .addGap(38, 38, 38))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(scroll_panel_precioscombustible, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,9 +255,9 @@ public class Ingreso_PrecioActual_Combustible extends javax.swing.JFrame {
                             .addComponent(caja_litro_diesel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9)))
                     .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scroll_panel_precioscombustible, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
+                .addComponent(scroll_panel_precioscombustible, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(buttom_modificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(buttom_limpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -312,6 +328,14 @@ botonatras.setVisible(true);        // TODO add your handling code here:
     private void buttom_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttom_limpiarActionPerformed
         limpiarcajas();
     }//GEN-LAST:event_buttom_limpiarActionPerformed
+
+    private void caja_litro_superActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caja_litro_superActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_caja_litro_superActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
