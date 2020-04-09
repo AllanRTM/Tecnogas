@@ -511,6 +511,9 @@
       <Properties>
         <Property name="label" type="java.lang.String" value="Modificar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modificar_insertActionPerformed"/>
+      </Events>
     </Component>
     <Component class="java.awt.Button" name="ingresar_diesel">
       <Properties>
@@ -710,6 +713,9 @@
               </Table>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabla_inventarioMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
