@@ -8,11 +8,15 @@ package sistematecnogas;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
+import servicios.conexion;
 
 /**
  *
@@ -21,18 +25,56 @@ import javax.swing.table.DefaultTableModel;
 public class Ingreso_Inventario_Combustible extends javax.swing.JFrame {
 
     
-    
+     conexion cc = new conexion();
+        Connection cn = cc.conexion();
+        
     
     //valores_conection
     
     private String driver="com.mysql.jc.jdbc.Driver";
-    private String cadenaConexion="jdbc:mysql://localhost:3306/tecnogas"+"?useTimezone=true&serverTimezone=UTC";
+    private String cadenaConexion="jdbc:mysql://localhost:3306/gasolinera"+"?useTimezone=true&serverTimezone=UTC";
     private String usuario="root";
-    private String contraseña="1234";
+    private String contraseña="onepiece";
     public Connection con;
     
     PreparedStatement ps;
     ResultSet rs;
+    void cargar(String valor){
+    /*String mostrar="SELECT * FROM `categoria` WHERE '%"+valor+"%'";*/
+    String mostrar="SELECT `id_inventario`, `recibido`, `recibido_plg3`, `inventario_inicial`, `inventario_inicial_plg3`, `litros_faltantes`, `litros_faltantes_plg3`, `despacho`, `despacho_plg3`, `inventario_final`, `inventario_final_plg3`, `id_usuario`, `id_tipo_combustible` FROM `inventario_combustible` WHERE `id_inventario` ="+valor;
+    String []titulos={"Id de proveedor","Nombre de proveedor","telefono","correo","direccion","id categoria","despacho","holA"};
+    String []Registros=new String[13];
+    DefaultTableModel model = new DefaultTableModel(null,titulos);
+  
+        try {
+              Statement st = cn.createStatement();
+              java.sql.ResultSet rs = st.executeQuery(mostrar);
+              
+              while(rs.next())
+              {
+                  Registros[0]= rs.getString("id_inventario");
+                  Registros[1]= rs.getString("recibido");
+                  Registros[2]= rs.getString("recibido_plg3");
+                  Registros[3]= rs.getString("inventario_inicial");
+                  Registros[4]= rs.getString("inventario_inicial_plg3");
+                  Registros[5]= rs.getString("litros_faltantes");
+                  Registros[6]= rs.getString("litros_faltantes_plg3");
+                  Registros[7]= rs.getString("despacho");
+                  Registros[8]= rs.getString("despacho_plg3");
+                  Registros[9]= rs.getString("inventario_final");
+                  Registros[10]= rs.getString("inventario_final_plg3");
+                  Registros[11]= rs.getString("id_usuario");
+                  Registros[12]= rs.getString("id_tipo_combustible");
+                  
+                           
+                  model.addRow(Registros);
+              }
+              tabla_inventario.setModel(model);
+        } catch (java.sql.SQLException ex) {
+            Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+  }
     
     public Connection conexion(){
         try {
@@ -93,7 +135,7 @@ public class Ingreso_Inventario_Combustible extends javax.swing.JFrame {
         initComponents();
         
         setTitle("Inventario de combustible");
-        setIconImage(new ImageIcon(getClass().getResource("/Imagen/logo_tecnogas_transp.png")).getImage());
+        //setIconImage(new ImageIcon(getClass().getResource("/Imagen/logo_tecnogas_transp.png")).getImage());
         fecha_pantalla1.setText(fecha());
     }
 
@@ -238,6 +280,11 @@ public class Ingreso_Inventario_Combustible extends javax.swing.JFrame {
         jLabel11.setText("Super");
 
         modificar_insert.setLabel("Modificar");
+        modificar_insert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificar_insertActionPerformed(evt);
+            }
+        });
 
         ingresar_diesel.setLabel("Ingresar");
         ingresar_diesel.addActionListener(new java.awt.event.ActionListener() {
@@ -362,6 +409,11 @@ public class Ingreso_Inventario_Combustible extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tabla_inventario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabla_inventarioMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tabla_inventario);
@@ -648,12 +700,16 @@ public class Ingreso_Inventario_Combustible extends javax.swing.JFrame {
     }
     
     private void ingresar_dieselActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresar_dieselActionPerformed
-        Connection conection = null;
+        
+        conexion cc = new conexion();
+        Connection cn = cc.conexion();
+        
         
         
        try{
-           conection = conexion();
-           ps = conection.prepareStatement("insert into inventario_combustible (recibido, recibido_plg3, inventario_inicial, inventario_inicial_plg3, litros_faltantes, litros_faltantes_plg3, despachado, despachado_plg3, inventario_final, inventario_final_plg3, id_usuario, id_tipo_combustible) values (?,?,?,?,?,?,?,?,?,?,?,?)");
+           cn = conexion();
+           String  consulta = "INSERT INTO `inventario_combustible` (`id_inventario`, `recibido`, `recibido_plg3`, `inventario_inicial`, `inventario_inicial_plg3`, `litros_faltantes`, `litros_faltantes_plg3`, `despacho`, `despacho_plg3`, `inventario_final`, `inventario_final_plg3`, `id_usuario`, `id_tipo_combustible`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+           ps = cn.prepareStatement(consulta);
            ps.setString(1, caja_recibido_diesel.getText()); //1-
            ps.setString(2, caja_plg_recibido.getText()); //2-
            ps.setString(3, caja_invinicial_diesel.getText()); //3-
@@ -669,6 +725,7 @@ public class Ingreso_Inventario_Combustible extends javax.swing.JFrame {
            
            ps.setString(11, "1");
            ps.setString(12, "2"); //tipo_combustible 2: diesel
+           ps.setString(13, "3");
            
            int resultado = ps.executeUpdate(); //ejecutamos
            
@@ -679,7 +736,7 @@ public class Ingreso_Inventario_Combustible extends javax.swing.JFrame {
             }else{
                     JOptionPane.showMessageDialog(null, "Error al insertar el registro.");}
                             
-            conection.close();
+            //conection.close();
            
        }catch(Exception ex){
        System.err.println("Error. "+ex);
@@ -955,58 +1012,84 @@ public class Ingreso_Inventario_Combustible extends javax.swing.JFrame {
     }//GEN-LAST:event_atrasMouseClicked
 
     private void cargar_tablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargar_tablaActionPerformed
-        DefaultTableModel modelotabla = new DefaultTableModel();
-        tabla_inventario.setModel(modelotabla);
-        
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        
-        Connection conection = null;
-        
-        try{
-            conection = conexion();
-            
-            
-            ps = conection.prepareStatement("select id_inventario, recibido, recibido_plg3, inventario_inicial, inventario_inicial_plg3, litros_faltantes, litros_faltantes_plg3, despachado, despachado_plg3, inventario_final, inventario_final_plg3, id_usuario, id_tipo_combustible from inventario_combustible;");
-            rs = (ResultSet) ps.executeQuery();
-            
-            modelotabla.addColumn("ID Inventario");
-            modelotabla.addColumn("Recibido");
-            modelotabla.addColumn("Recibido in³");
-            modelotabla.addColumn("Inventario Inicial ");
-            modelotabla.addColumn("Inventario Inicial in³");
-            modelotabla.addColumn("Litros Faltantes");
-            modelotabla.addColumn("Litros Faltantes in³");
-            modelotabla.addColumn("Despachado");
-            modelotabla.addColumn("Despachado in³");
-            modelotabla.addColumn("Inventario Final");
-            modelotabla.addColumn("Inventario Final in³");
-            modelotabla.addColumn("ID Usuario");
-            modelotabla.addColumn("ID Combustible");
-            
-            while(rs.next()){
-                Object fila[] = new Object[13];
-                
-                for (int i=0; i<13; i++){
-                      fila[i] = rs.getObject(i);
-            
-            
-                }
-                
-                modelotabla.addRow(fila);
-            }
-            
-            
-        
-        }catch(Exception ex){
-           System.err.println("Error, "+ex);
-        }
-        
-        
+     String mostrar="SELECT `id_inventario`, `recibido`, `recibido_plg3`, `inventario_inicial`, `inventario_inicial_plg3`, `litros_faltantes`, `litros_faltantes_plg3`, `despacho`, `despacho_plg3`, `inventario_final`, `inventario_final_plg3`, `id_usuario`, `id_tipo_combustible` FROM `inventario_combustible` WHERE 1";
+    String []titulos={"Id inventario","recibido","recibido plg","inventario inicial","inventario inicial plg3","litros faltantes","litros faltantes plg3","despacho","despacho plg","inventario final","inventario final plg3","id_usuario","id_tipo_combustible" };
+    String []Registros=new String[14];
+    DefaultTableModel model = new DefaultTableModel(null,titulos);
+  
+        try {
+              Statement st = cn.createStatement();
+              java.sql.ResultSet rs = st.executeQuery(mostrar);
+              while(rs.next())
+              {
+                  Registros[0]= rs.getString("id_inventario");
+                  Registros[1]= rs.getString("recibido");
+                  Registros[2]= rs.getString("recibido_plg3");
+                  Registros[3]= rs.getString("inventario_inicial");
+                  Registros[4]= rs.getString("inventario_inicial_plg3");
+                  Registros[5]= rs.getString("litros_faltantes");
+                  Registros[6]= rs.getString("litros_faltantes_plg3");
+                  Registros[7]= rs.getString("despacho");
+                  Registros[8]= rs.getString("despacho_plg3");
+                  Registros[9]= rs.getString("inventario_final");
+                  Registros[10]= rs.getString("inventario_final_plg3");
+                  Registros[11]= rs.getString("id_usuario");
+                  Registros[12]= rs.getString("id_tipo_combustible");
+                       
+                  model.addRow(Registros);
+              }
+              tabla_inventario.setModel(model);
+        } catch (java.sql.SQLException ex) {
+            Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
+        }  
         
         
         
     }//GEN-LAST:event_cargar_tablaActionPerformed
+
+    private void modificar_insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_insertActionPerformed
+        // TODO add your handling code here:
+        try {
+            //String sql= "`proveedores` SET `id_proveedores`='"+idproveedor.getText()+"',`nombre`='"+descripcion.getText()+"',`telefono`='"+telefono.getText()+"',`direccion_correo`='"+correo.getText()+"',`direccion`='"+direccion.getText()+"',`id_categoria_productos`='"+idcategoria.getSelectedIndex()+"' WHERE `id_proveedores` ='"+idproveedor.getText()+"'";
+            //String consulta="UPDATE `proveedores` SET `id_proveedores` = '"+idproveedor.getText()+"', `nombre` = '"+descripcion.getText()+"', `telefono` = '"+telefono.getText()+"', `direccion_correo` = '"+correo.getText()+"', `direccion` = '"+direccion.getText()+"', `id_categoria_productos` = '"+idcategoria.getSelectedIndex()+"' WHERE `proveedores`.`id_proveedores` = "+idproveedor.getText()+"";
+            String consulta = "UPDATE `inventario_combustible` SET `recibido`='"+caja_recibido_diesel.getText()+"',`recibido_plg3`='"+recibido_litro_diesel.getText()+"',`inventario_inicial`='"+caja_invinicial_diesel.getText()+"',`inventario_inicial_plg3`='"+invinicial_litro_diesel.getText()+"',`litros_faltantes`='"+caja_litfaltantes_diesel.getText()+"',`litros_faltantes_plg3`='"+caja_plg_litfaltantes.getText()+"',`despacho`='"+caja_despa_diesel.getText()+"',`despacho_plg3`='"+despachado_litro_diesel.getText()+"',`inventario_final`='"+caja_invfinal_diesel.getText()+"',`inventario_final_plg3`='"+caja_plg_invfinal.getText()+"',`id_usuario`='01',`id_tipo_combustible`='01' WHERE `inventario_combustible`.`id_inventario` = 12";
+            PreparedStatement pst  = cn.prepareStatement(consulta);
+           
+            
+            
+            pst.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "LOS DATOS HAN SIDO MODIFICADOS");
+            cargar("");
+            
+           
+        } catch (java.sql.SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex);
+        
+        } 
+    }//GEN-LAST:event_modificar_insertActionPerformed
+
+    private void tabla_inventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_inventarioMouseClicked
+        // TODO add your handling code here:
+        int seleccionar = tabla_inventario.rowAtPoint(evt.getPoint());
+        
+        caja_recibido_diesel.setText(String.valueOf(tabla_inventario.getValueAt(seleccionar,1)));
+        caja_plg_recibido.setText(String.valueOf(tabla_inventario.getValueAt(seleccionar,2)));
+        
+        
+        caja_invinicial_diesel.setText(String.valueOf(tabla_inventario.getValueAt(seleccionar,3)));
+        caja_plg_invinicial.setText(String.valueOf(tabla_inventario.getValueAt(seleccionar,4)));
+        caja_litfaltantes_diesel.setText(String.valueOf(tabla_inventario.getValueAt(seleccionar,5)));
+        
+        caja_plg_litfaltantes.setText(String.valueOf(tabla_inventario.getValueAt(seleccionar,6)));
+        caja_despa_diesel.setText(String.valueOf(tabla_inventario.getValueAt(seleccionar,7)));
+        caja_plg_despachado.setText(String.valueOf(tabla_inventario.getValueAt(seleccionar,8)));
+        
+        caja_invfinal_diesel.setText(String.valueOf(tabla_inventario.getValueAt(seleccionar,9)));
+        caja_plg_litfaltantes.setText(String.valueOf(tabla_inventario.getValueAt(seleccionar,10)));
+        
+        
+    }//GEN-LAST:event_tabla_inventarioMouseClicked
 
     /**
      * @param args the command line arguments
