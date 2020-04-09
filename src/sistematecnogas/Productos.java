@@ -22,23 +22,7 @@ public class Productos extends javax.swing.JFrame {
     
     public Productos() {
       initComponents();
-        
-         try{
-        
-       
-        String sql="SELECT * FROM productos";
-        
-        
-        java.sql.Statement st = cn.createStatement();
-        java.sql.ResultSet rs = st.executeQuery(sql);
-        while(rs.next()){
-            this.cmbusuario.addItem(rs.getString("id_usuarios"));
-            this.cmbcategoria.addItem(rs.getString("id_categoria_productos"));
-            this.cmbestado.addItem(rs.getString("id_estado_productos"));
-        }
-        }catch(Exception e){
-            
-        }
+     
     }
 
     /**
