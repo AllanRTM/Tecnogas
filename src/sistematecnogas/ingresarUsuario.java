@@ -11,6 +11,10 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 import servicios.conexion;
 
 /**
@@ -32,10 +36,9 @@ public class ingresarUsuario extends javax.swing.JFrame {
     public ingresarUsuario() {
         initComponents();
         lblFechaCreacion.setText(fecha());
-        lblFechaActualizacion.setText(fecha());
                  try{
         sent=cn.createStatement();
-        String sql="SELECT * FROM `estado_usuario` ";
+        String sql="SELECT * FROM `estado` ";
              java.sql.Statement st=cn.createStatement();
         java.sql.ResultSet rs=sent.executeQuery(sql);
         comboEstado.addItem("seleccione estado");
@@ -52,10 +55,10 @@ public class ingresarUsuario extends javax.swing.JFrame {
         String sql="SELECT * FROM `tipo_usuario` ";
              java.sql.Statement st=cn.createStatement();
         java.sql.ResultSet rs=sent.executeQuery(sql);
-        comboEstado.addItem("seleccione tipo");
+        comboTipo.addItem("seleccione tipo");
         while(rs.next()){
          
-            this.comboEstado.addItem(rs.getString("tipo"));
+            this.comboTipo.addItem(rs.getString("tipo"));
         }
         }catch(Exception e){
             
@@ -85,9 +88,16 @@ public class ingresarUsuario extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
         lblFechaCreacion = new javax.swing.JLabel();
-        lblFechaActualizacion = new javax.swing.JLabel();
         comboTipo = new javax.swing.JComboBox<>();
         comboEstado = new javax.swing.JComboBox<>();
+        btnAtras = new javax.swing.JButton();
+        btnMostrarTodo = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblUsuario = new javax.swing.JTable();
+        btnModificar = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
+        fechaCreacion = new com.toedter.calendar.JDateChooser();
+        fechaActualizacion = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,7 +112,7 @@ public class ingresarUsuario extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel5.setText("Registro de Usuario");
 
-        jButton1.setText("Registrar");
+        jButton1.setText("Registrar Usuario");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -117,83 +127,161 @@ public class ingresarUsuario extends javax.swing.JFrame {
 
         lblFechaCreacion.setText("dd/MM/YYYY");
 
-        lblFechaActualizacion.setText("dd/MM/YYYY");
+        btnAtras.setText("Atras");
+        btnAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasActionPerformed(evt);
+            }
+        });
+
+        btnMostrarTodo.setText("Mostrar todos los usuarios");
+        btnMostrarTodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarTodoActionPerformed(evt);
+            }
+        });
+
+        tblUsuario.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(tblUsuario);
+
+        btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
+
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+
+        fechaCreacion.setDateFormatString("YYYY-MM-d");
+
+        fechaActualizacion.setDateFormatString("YYYY-MM-d");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(82, 82, 82)
-                                .addComponent(jButton1)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel6)
                                     .addComponent(jLabel7)
-                                    .addComponent(jLabel8))
-                                .addGap(51, 51, 51)
+                                    .addComponent(jLabel6))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPassword)
-                                    .addComponent(txtNombre)
-                                    .addComponent(txtID)
-                                    .addComponent(comboTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(fechaActualizacion, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                                        .addGap(253, 253, 253))
+                                    .addComponent(fechaCreacion, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel8)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblFechaCreacion)
-                                            .addComponent(lblFechaActualizacion))
-                                        .addGap(0, 53, Short.MAX_VALUE))
-                                    .addComponent(comboEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(26, 26, 26))
+                                            .addComponent(jLabel2)
+                                            .addComponent(jLabel1))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel5))
+                                .addGap(32, 32, 32)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel4))
+                                        .addGap(49, 49, 49)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jButton1)))
+                                    .addComponent(lblFechaCreacion)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(btnAtras)
+                                .addGap(115, 115, 115)
+                                .addComponent(btnLimpiar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnModificar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnMostrarTodo))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(43, 43, 43)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5)
-                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(lblFechaCreacion))
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
-                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(fechaCreacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(fechaActualizacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(25, 25, 25)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(lblFechaCreacion))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(lblFechaActualizacion))
-                .addGap(33, 33, 33)
-                .addComponent(jButton1)
-                .addGap(21, 21, 21))
+                    .addComponent(btnAtras)
+                    .addComponent(btnMostrarTodo)
+                    .addComponent(btnModificar)
+                    .addComponent(btnLimpiar))
+                .addGap(18, 18, 18))
         );
 
         pack();
@@ -203,45 +291,87 @@ public class ingresarUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
         //String pass =new String(txtPassword.getPassword());
         try {
-            String sql="INSERT INTO `usuarios` (`id_usuario`, `nombre`, `contraseña`, `tipo_usuario`, `estado_usuario`, `fecha_creacion_usuario`, `fecha_actualizacion`) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String sql="INSERT INTO `usuarios` (`id_usuario`, `nombre`, `contraseña`, `tipo`, `estado`, `fecha_creacion_usuario`, `fecha_actualizacion`) VALUES (?, ?, MD5(?), ?, ?, ?, ?)";
             PreparedStatement pst  = cn.prepareStatement(sql);
 
             pst.setString(1, txtID.getText());
             pst.setString(2, txtNombre.getText());
             pst.setString(3, txtPassword.getText());
-//            if(RadioBtnAdmin.isEnabled()){
-//            RadioBtnAdmin.setText("Administrador");
-//        }else{
-//            RadioBtnAdmin.setText("Estandar");
-//        }
-    String value=comboTipo.getSelectedItem().toString();
+            String value=comboTipo.getSelectedItem().toString();
             pst.setString(4, value);
-//            if(radioBtnEstado.isEnabled()){
-//            radioBtnEstado.setText("Activo");
-//        }else{
-//            radioBtnEstado.setText("Inactivo");
-//        }
             String value1=comboEstado.getSelectedItem().toString();
             pst.setString(5, value1);
-            pst.setString(6, lblFechaCreacion.getText());
-            pst.setString(7, lblFechaActualizacion.getText());
+            pst.setString(6, ((JTextField)fechaCreacion.getDateEditor().getUiComponent()).getText());
+            pst.setString(7, ((JTextField)fechaActualizacion.getDateEditor().getUiComponent()).getText());
             
-            pst.executeUpdate();
-            if (txtPassword.getText().isEmpty() && txtNombre.getText().isEmpty() && txtID.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "no pueden haber campos vacios");
-            }
-            else if(!txtNombre.getText().contains("@")&&!txtNombre.getText().contains(".")) {
-            JOptionPane.showMessageDialog(null, "porfavor solo ingrese letras");}
-            else{
-                JOptionPane.showMessageDialog(null, "Registro Guardado con Exito");
-        }
+            //pst.executeUpdate();
+              int n=pst.executeUpdate();
+            if(n>0)
+            JOptionPane.showMessageDialog(null, "datos guardados");
+        
             //cargar("");
-        } catch (java.sql.SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, "INGRESA TODOS LOS VALORES CORRECTAMENTE");
+        } catch (/*java.sql.SQLException*/Exception e) {
+            //JOptionPane.showMessageDialog(rootPane, "INGRESA TODOS LOS VALORES CORRECTAMENTE");
+            JOptionPane.showMessageDialog(null, "error"+ e.getMessage()); 
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnMostrarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarTodoActionPerformed
+        // TODO add your handling code here:
+        String mostrar="SELECT `id_usuario`, `nombre`, `contraseña`, `tipo`, `estado`, `fecha_creacion_usuario`, `fecha_actualizacion` FROM `usuarios` WHERE 1";
+        String []titulos={"ID usudario","Nombre","contraseña","tipo de usuario","estado del usuario","fecha de creacion","fecha de actualizacion"};
+        String []Registros=new String[7];
+        DefaultTableModel model = new DefaultTableModel(null,titulos);
+  
+        try {
+              Statement st = cn.createStatement();
+              java.sql.ResultSet rs = st.executeQuery(mostrar);
+              while(rs.next())
+              {
+                  Registros[0]= rs.getString("id_usuario");
+                  Registros[1]= rs.getString("nombre");
+                  Registros[2]= rs.getString("contraseña");
+                  Registros[3]= rs.getString("tipo");
+                  Registros[4]= rs.getString("estado");
+                  Registros[5]= rs.getString("fecha_creacion_usuario");
+                  Registros[6]= rs.getString("fecha_actualizacion");
+                  model.addRow(Registros);
+              }
+              tblUsuario.setModel(model);
+        } catch (java.sql.SQLException ex) {
+            Logger.getLogger(Categoria.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnMostrarTodoActionPerformed
+
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        panelcentral ingresar = new panelcentral();
+        ingresar.setVisible(true);
+    }//GEN-LAST:event_btnAtrasActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+        try {
+            String sql= "`usuarios` SET `id_usuario`"+txtID.getText()+",`nombre`"+txtNombre.getText()+",`contraseña`"+txtPassword.getText()+",`tipo`"+comboTipo.getSelectedItem()+",`estado`"+comboEstado.getSelectedItem()+",`fecha_creacion_usuario`"+((JTextField)fechaCreacion.getDateEditor().getUiComponent()).getText()+",`fecha_actualizacion`"+((JTextField)fechaActualizacion.getDateEditor().getUiComponent()).getText()+" WHERE `id_usuario`"+txtID.getText()+"'";
+            PreparedStatement pst  = cn.prepareStatement(sql);
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "LOS DATOS HAN SIDO MODIFICADOS");
+            //cargar(""); 
+        } catch (java.sql.SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "INGRESA TODOS LOS DATOS CORRECTAMENTE");
+        
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        txtID.setText("");
+        txtNombre.setText("");
+        txtPassword.setText("");
+    }//GEN-LAST:event_btnLimpiarActionPerformed
     /**
+
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -280,9 +410,15 @@ public class ingresarUsuario extends javax.swing.JFrame {
 Connection cn = cc.conexion();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAtras;
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnMostrarTodo;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> comboEstado;
     private javax.swing.JComboBox<String> comboTipo;
+    private com.toedter.calendar.JDateChooser fechaActualizacion;
+    private com.toedter.calendar.JDateChooser fechaCreacion;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -292,8 +428,9 @@ Connection cn = cc.conexion();
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel lblFechaActualizacion;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblFechaCreacion;
+    private javax.swing.JTable tblUsuario;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JPasswordField txtPassword;

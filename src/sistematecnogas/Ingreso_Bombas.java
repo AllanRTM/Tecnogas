@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import servicios.conexion;
 
@@ -37,7 +38,7 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
         lblFecha.setText(fecha());
         try{
         sent=cn.createStatement();
-        String sql="SELECT * FROM `estado_bombas` ";
+        String sql="SELECT * FROM `estado` ";
              java.sql.Statement st=cn.createStatement();
         java.sql.ResultSet rs=sent.executeQuery(sql);
         comboEstado.addItem("seleccione estado");
@@ -76,12 +77,16 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
         btnModificar = new javax.swing.JButton();
         btnIngresar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        lblFecha = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblBombas = new javax.swing.JTable();
         txtIDbomba = new javax.swing.JTextField();
         txtNumBomba = new javax.swing.JTextField();
         comboEstado = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        btnLimpiar = new javax.swing.JButton();
+        fechaIngreso = new com.toedter.calendar.JDateChooser();
+        fechaActualizacion = new com.toedter.calendar.JDateChooser();
+        lblFecha = new javax.swing.JLabel();
 
         textfield_id_bomba3.setText("textField2");
 
@@ -104,7 +109,7 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
 
         jLabel3.setText("Numero de bomba:");
 
-        jLabel7.setText("Fecha ingreso:");
+        jLabel7.setText("Fecha de ingreso:");
 
         jLabel9.setText("Ingresar en estado:");
 
@@ -128,6 +133,11 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
         });
 
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         btnIngresar.setText("Ingresar nueva bomba");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
@@ -135,8 +145,6 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
                 btnIngresarActionPerformed(evt);
             }
         });
-
-        lblFecha.setText("(dd/MM/YYYY)");
 
         tblBombas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -151,6 +159,21 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblBombas);
 
+        jLabel4.setText("Fecha de actualizacion:");
+
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+
+        fechaIngreso.setDateFormatString("YYYY-MM-d ");
+
+        fechaActualizacion.setDateFormatString("YYYY-MM-d");
+
+        lblFecha.setText("dd/MM/YYYY");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -162,71 +185,91 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addGap(15, 15, 15))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel9)
-                                            .addComponent(jLabel7)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel2))
-                                        .addGap(30, 30, 30)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txtIDbomba)
-                                            .addComponent(txtNumBomba)
-                                            .addComponent(comboEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnMostrarTodo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(btnIngresar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(lblFecha)
+                                        .addGap(17, 17, 17))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnAtras)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(btnLimpiar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnMostrarTodo))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(jLabel4)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(fechaActualizacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel9)
+                                                .addComponent(jLabel7)
+                                                .addComponent(jLabel3)
+                                                .addComponent(jLabel2))
+                                            .addGap(30, 30, 30)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(txtNumBomba, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(txtIDbomba, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addComponent(comboEstado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(fechaIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtIDbomba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(lblFecha))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtNumBomba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(8, 8, 8)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(lblFecha))
+                            .addComponent(jLabel2)
+                            .addComponent(txtIDbomba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(txtNumBomba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel7))
+                    .addComponent(fechaIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4)
+                    .addComponent(fechaActualizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnMostrarTodo, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnMostrarTodo, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAtras)
-                    .addComponent(btnModificar))
+                    .addComponent(btnModificar)
+                    .addComponent(btnLimpiar))
                 .addContainerGap())
         );
 
@@ -236,20 +279,14 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         // TODO add your handling code here:
         try {
-            String sql="INSERT INTO `bombas` (`id_bombas`, `num_bomba`, `fecha_creacion_bomba`, `fecha_actualizacion_bomba`, `id_estado_bomba`) VALUES (?, ?, ?, ?, ?)";
-            
+            String sql="INSERT INTO `bombas` (`id_bombas`, `num_bomba`, `fecha_creacion_bomba`, `fecha_actualizacion_bomba`, `estado`) VALUES (?, ?, ?, ?, ?)";           
             PreparedStatement pst  = cn.prepareStatement(sql);
             pst.setString(1, txtIDbomba.getText());
             pst.setString(2, txtNumBomba.getText());
-//            if(radioBtnEstado.isEnabled()){
-//            radioBtnEstado.setText("Activo");
-//        }else{
-//            radioBtnEstado.setText("Inactivo");
-//        }
-//            pst.setString(3, radioBtnEstado.getText());
+            pst.setString(3, ((JTextField)fechaIngreso.getDateEditor().getUiComponent()).getText());
+            pst.setString(4, ((JTextField)fechaActualizacion.getDateEditor().getUiComponent()).getText());
             String value=comboEstado.getSelectedItem().toString();
-            pst.setString(3, value);
-            pst.setString(4, lblFecha.getText());
+            pst.setString(5, value);
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "Registro Guardado con Exito");
             //cargar("");  
@@ -260,7 +297,7 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
 
     private void btnMostrarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarTodoActionPerformed
         // TODO add your handling code here:
-        String mostrar="SELECT `id_bombas`, `num_bomba`, `fecha_creacion_bomba`, `fecha_actualizacion_bomba`, `id_estado_bomba` FROM `bombas` WHERE 1";
+        String mostrar="SELECT `id_bombas`, `num_bomba`, `fecha_creacion_bomba`, `fecha_actualizacion_bomba`, `estado` FROM `bombas` WHERE 1";
     String []titulos={"ID bomba","Numero de bomba","Fecha de creacion de la bomba","fecha de actualizacion de la bomba","Estado de la bomba"};
     String []Registros=new String[5];
     DefaultTableModel model = new DefaultTableModel(null,titulos);
@@ -274,7 +311,7 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
                   Registros[1]= rs.getString("num_bomba");
                   Registros[2]= rs.getString("fecha_creacion_bomba");
                   Registros[3]= rs.getString("fecha_actualizacion_bomba");
-                  Registros[4]= rs.getString("id_estado_bomba");                       
+                  Registros[4]= rs.getString("estado");                       
                   model.addRow(Registros);
               }
               tblBombas.setModel(model);
@@ -291,7 +328,31 @@ this.dispose();// TODO add your handling code here:
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        panelcentral ingresar = new panelcentral();
+        ingresar.setVisible(true);
     }//GEN-LAST:event_btnAtrasActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+        try {
+            String sql= "`bombas` SET `id_bombas`"+txtIDbomba.getText()+",`num_bomba`"+txtNumBomba.getText()+",`fecha_creacion_bomba`"+((JTextField)fechaIngreso.getDateEditor().getUiComponent()).getText()+",`fecha_actualizacion_bomba`"+((JTextField)fechaActualizacion.getDateEditor().getUiComponent()).getText()+",`estado`"+comboEstado.getSelectedItem()+" WHERE `id_bombas`"+txtIDbomba.getText()+"'";
+            PreparedStatement pst  = cn.prepareStatement(sql);     
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "LOS DATOS HAN SIDO MODIFICADOS");
+            //cargar("");
+        } catch (java.sql.SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "INGRESA TODOS LOS DATOS CORRECTAMENTE");
+        
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        txtIDbomba.setText("");
+        txtNumBomba.setText("");
+       
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -331,10 +392,13 @@ this.dispose();// TODO add your handling code here:
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtras;
     private javax.swing.JButton btnIngresar;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnMostrarTodo;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> comboEstado;
+    private com.toedter.calendar.JDateChooser fechaActualizacion;
+    private com.toedter.calendar.JDateChooser fechaIngreso;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel18;
@@ -343,6 +407,7 @@ this.dispose();// TODO add your handling code here:
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
