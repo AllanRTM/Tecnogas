@@ -100,6 +100,7 @@ public class Productos extends javax.swing.JFrame {
     RestrictedTextField limitar0 =new RestrictedTextField(txtnombre);
     limitar0.setLimit(11);
     
+    
     RestrictedTextField limitar1 =new RestrictedTextField(txtprecio);
     limitar1.setLimit(11);
     
