@@ -89,6 +89,13 @@ public class Productos extends javax.swing.JFrame {
         }      
      
     }
+    
+     public void limita(){
+    txtnombre.setDocument(new limitar(txtnombre,3,20));
+    txtprecio.setDocument(new limitar(txtprecio,1,12));
+     }
+    
+    
     void validar(){
     RestrictedTextField limitar0 =new RestrictedTextField(txtnombre);
     limitar0.setLimit(11);
@@ -315,9 +322,7 @@ public class Productos extends javax.swing.JFrame {
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(cmbusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -377,14 +382,14 @@ public class Productos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel3)
-                            .addComponent(txtactualizacion))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3)
+                                .addComponent(txtactualizacion)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -543,6 +548,15 @@ cmbusuario.setSelectedItem(tablaproductos.getValueAt(row,7).toString());
             getToolkit().beep();
             evt.consume();
             leyenda1.setText("Solo Letras");
+        }
+        
+         if(evt.getKeyChar()>=33 && evt.getKeyChar()<=64
+        || evt.getKeyChar()>=91 && evt.getKeyChar()<=96
+        || evt.getKeyChar()>=123 && evt.getKeyChar()<=208
+        || evt.getKeyChar()>=210 && evt.getKeyChar()<=240
+        || evt.getKeyChar()>=242 && evt.getKeyChar()<=255){
+            evt.consume();
+            leyenda1.setText("solo letras");
         }
     }//GEN-LAST:event_txtnombreKeyTyped
 
