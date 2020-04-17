@@ -31,6 +31,7 @@ public class Categoria extends javax.swing.JFrame {
      */
     public Categoria() {
         initComponents();
+        this.setLocationRelativeTo(null); 
         
         cargar("");
         limita();

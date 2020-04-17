@@ -13,14 +13,21 @@ import javax.swing.JOptionPane;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.ImageIcon;
+import servicios.conexion;
 import static sistematecnogas.Login.fecha;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Wilfredo Serrano
  */
 public class Ingreso_PrecioActual_Combustible extends javax.swing.JFrame {
-
+    conexion cc = new conexion();
+    Connection cn = cc.conexion();
+   
     
     //valores_conection
     
@@ -45,20 +52,70 @@ public class Ingreso_PrecioActual_Combustible extends javax.swing.JFrame {
     }
     
     public void limpiarcajas(){
-    caja_litro_super.setText(null);
-    caja_litro_diesel.setText(null);
+    precio_super.setText(null);
+    precio_diesel.setText(null);
     };
+    void cargar(String valor){
+ 
+    String mostrar="SELECT `id_precio_combustible`, `precio`, `id_tipo_combustible`, `decha_precio_combustible` FROM `precio_combustible` WHERE `id_precio_combustible` LIKE '%"+valor+"%'";
+    String []titulos={"Id de precio","Precio","Id tipo combustible","Fecha"};
+    String []Registros=new String[6];
+    DefaultTableModel model = new DefaultTableModel(null,titulos);
+  
+        try {
+              Statement st = cn.createStatement();
+              java.sql.ResultSet rs = st.executeQuery(mostrar);
+              
+              while(rs.next())
+              {
+                  Registros[0]= rs.getString("id_precio_combustible");
+                  Registros[1]= rs.getString("precio");
+                  Registros[2]= rs.getString("id_tipo_combustible");
+                  Registros[3]= rs.getString("decha_precio_combustible");
+                 
+                           
+                  model.addRow(Registros);
+              }
+              tabla.setModel(model);
+        } catch (java.sql.SQLException ex) {
+            Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+  }
    
     
     
     public Ingreso_PrecioActual_Combustible() {
         initComponents();
+         cargar("");
         setLocationRelativeTo(null);
         
         fecha_pantalla.setText(fecha());
         setTitle("Precio Actual de Combustible");
-        setIconImage(new ImageIcon(getClass().getResource("/Imagen/logo_tecnogas_transp.png")).getImage());
+       // setIconImage(new ImageIcon(getClass().getResource("/Imagen/logo_tecnogas_transp.png")).getImage());
         
+    }
+    
+    public void ingresar(){
+    try {
+            String sql="INSERT INTO `precio_combustible` (`id_precio_combustible`, `precio`, `id_tipo_combustible`, `decha_precio_combustible`) VALUES (1, ?, ?, SYSDATE())";
+            PreparedStatement pst  = cn.prepareStatement(sql);
+            
+  
+            pst.setString(1, precio_super.getText());
+            pst.setString(2, "1");
+         
+            
+            pst.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "Registro Guardado con Exito");
+            cargar("");
+            
+           
+        } catch (java.sql.SQLException ex) {
+            JOptionPane.showInternalMessageDialog(null, "Error: "+ex);
+            
+        }
     }
 
     /**
@@ -91,15 +148,20 @@ public class Ingreso_PrecioActual_Combustible extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        caja_litro_diesel = new java.awt.TextField();
-        caja_litro_super = new java.awt.TextField();
+        precio_diesel = new java.awt.TextField();
+        precio_super = new java.awt.TextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         buttom_modificar = new java.awt.Button();
         buttom_limpiar = new java.awt.Button();
-        scroll_panel_precioscombustible = new java.awt.ScrollPane();
         buttom_insert_preciosuper = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabla = new javax.swing.JTable();
+        buscar = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        id = new javax.swing.JLabel();
 
         jLabel5.setText("jLabel5");
 
@@ -137,9 +199,9 @@ public class Ingreso_PrecioActual_Combustible extends javax.swing.JFrame {
 
         jLabel9.setText("Litro");
 
-        caja_litro_super.addActionListener(new java.awt.event.ActionListener() {
+        precio_super.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                caja_litro_superActionPerformed(evt);
+                precio_superActionPerformed(evt);
             }
         });
 
@@ -172,6 +234,37 @@ public class Ingreso_PrecioActual_Combustible extends javax.swing.JFrame {
             }
         });
 
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tabla);
+
+        buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel7.setText("Buscar: ");
+
+        jLabel12.setText("Id: ");
+
+        id.setText("...");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -187,7 +280,7 @@ public class Ingreso_PrecioActual_Combustible extends javax.swing.JFrame {
                                 .addComponent(buttom_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttom_limpiar, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                        .addComponent(buttom_limpiar, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -196,34 +289,43 @@ public class Ingreso_PrecioActual_Combustible extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel6)
                                         .addGap(18, 18, 18)
-                                        .addComponent(fecha_pantalla, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(fecha_pantalla, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel1))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel3)
-                                        .addGap(30, 30, 30)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel10)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(caja_litro_super, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel8))
+                                        .addComponent(precio_super, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel7)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jLabel4))
                                         .addGap(30, 30, 30)
                                         .addComponent(jLabel11)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(caja_litro_diesel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel9)))
+                                        .addComponent(precio_diesel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(buttom_insert_preciosuper, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING))))
                         .addGap(38, 38, 38))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(scroll_panel_precioscombustible, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -234,7 +336,9 @@ public class Ingreso_PrecioActual_Combustible extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(fecha_pantalla))
+                    .addComponent(fecha_pantalla)
+                    .addComponent(jLabel12)
+                    .addComponent(id))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addGap(15, 15, 15)
@@ -244,7 +348,7 @@ public class Ingreso_PrecioActual_Combustible extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel3)
                                 .addComponent(jLabel10))
-                            .addComponent(caja_litro_super, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(precio_super, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8)
                             .addComponent(buttom_insert_preciosuper))
                         .addGap(21, 21, 21)
@@ -252,17 +356,22 @@ public class Ingreso_PrecioActual_Combustible extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel4)
                                 .addComponent(jLabel11))
-                            .addComponent(caja_litro_diesel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9)))
-                    .addComponent(jButton2))
-                .addGap(34, 34, 34)
-                .addComponent(scroll_panel_precioscombustible, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                            .addComponent(precio_diesel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton2)
+                        .addComponent(jLabel9)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(buttom_modificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(buttom_limpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         buttom_limpiar.getAccessibleContext().setAccessibleName("buttom_limpiar");
@@ -276,66 +385,40 @@ botonatras.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void buttom_insert_preciosuperActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttom_insert_preciosuperActionPerformed
-        Connection conection = null;
-        
-        try{
-            conection = conexion();
-            ps = (PreparedStatement) conection.prepareStatement("insert into precio_combustible (precio, id_tipo_combustible, fecha_precio_combustible) values (?, 1, sysdate())");
-            ps.setString(1,caja_litro_super.getText());
-            
-            int resultado = ps.executeUpdate(); //ejecutamos la inserción en la base de datos
-            
-            if (resultado > 0){
-                JOptionPane.showMessageDialog(null, "Registro insertado correctamente.");
-                limpiarcajas();
-                
-            }else{
-                    JOptionPane.showMessageDialog(null, "Error al insertar el registro.");}
-                limpiarcajas();
-            
-            conection.close();
-            
-        }catch(Exception e){
-            System.err.println("Error, "+e);            
-        }
+        ingresar();
         
     }//GEN-LAST:event_buttom_insert_preciosuperActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-          Connection conection = null;
-        
-        try{
-            conection = conexion();
-            ps = (PreparedStatement) conection.prepareStatement("insert into precio_combustible (precio, id_tipo_combustible, fecha_precio_combustible) values (?, 2, sysdate())");
-            ps.setString(1,caja_litro_diesel.getText());
-            
-            int resultado = ps.executeUpdate(); //ejecutamos la inserción en la base de datos
-            
-            if (resultado > 0){
-                JOptionPane.showMessageDialog(null, "Registro insertado correctamente.");
-                
-            }else{
-                    JOptionPane.showMessageDialog(null, "Error al insertar el registro.");}
-            
-            conection.close();
-            
-        }catch(Exception e){
-            System.err.println("Error, "+e);            
-        }
-        
+          
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void buttom_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttom_limpiarActionPerformed
         limpiarcajas();
     }//GEN-LAST:event_buttom_limpiarActionPerformed
 
-    private void caja_litro_superActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caja_litro_superActionPerformed
+    private void precio_superActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precio_superActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_caja_litro_superActionPerformed
+    }//GEN-LAST:event_precio_superActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
+        // TODO add your handling code here:
+        int seleccionar = tabla.rowAtPoint(evt.getPoint());
+
+        precio_diesel.setText(String.valueOf(tabla.getValueAt(seleccionar,0)));
+        precio_super.setText(String.valueOf(tabla.getValueAt(seleccionar,1)));
+        
+
+    }//GEN-LAST:event_tablaMouseClicked
+
+    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+        // TODO add your handling code here:
+          cargar(buscar.getText());
+    }//GEN-LAST:event_buscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -373,24 +456,29 @@ botonatras.setVisible(true);        // TODO add your handling code here:
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField buscar;
     private javax.swing.JButton buttom_insert_preciosuper;
     private java.awt.Button buttom_limpiar;
     private java.awt.Button buttom_modificar;
-    private java.awt.TextField caja_litro_diesel;
-    private java.awt.TextField caja_litro_super;
     private javax.swing.JLabel fecha_pantalla;
+    private javax.swing.JLabel id;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private java.awt.ScrollPane scroll_panel_precioscombustible;
+    private javax.swing.JScrollPane jScrollPane2;
+    private java.awt.TextField precio_diesel;
+    private java.awt.TextField precio_super;
+    private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
 }

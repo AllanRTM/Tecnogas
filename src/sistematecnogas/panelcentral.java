@@ -26,8 +26,9 @@ public class panelcentral extends javax.swing.JFrame {
         initComponents();
         //fecha_pantalla.setText(fecha());
         fecha_pantalla.setText(fecha());
-         setTitle("Panel Central");
-        setIconImage(new ImageIcon(getClass().getResource("/Imagen/logo_tecnogas_transp.png")).getImage());
+        this.setLocationRelativeTo(null); 
+        // setTitle("Panel Central");
+        //setIconImage(new ImageIcon(getClass().getResource("/Imagen/logo_tecnogas_transp.png")).getImage());
     }
 
     /**
@@ -61,6 +62,7 @@ public class panelcentral extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 255));
+        setPreferredSize(new java.awt.Dimension(600, 500));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N

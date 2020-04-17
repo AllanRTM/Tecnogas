@@ -32,6 +32,7 @@ public class Proveedores extends javax.swing.JFrame {
     
     public Proveedores() {
         initComponents();
+        this.setLocationRelativeTo(null); 
         cargar("");
         limita();
         limitar();
@@ -105,7 +106,7 @@ public class Proveedores extends javax.swing.JFrame {
     
     void cargar(String valor){
     /*String mostrar="SELECT * FROM `categoria` WHERE '%"+valor+"%'";*/
-    String mostrar="SELECT `id_proveedores`, `nombre`, `telefono`, `direccion_correo`, `direccion`, `id_categoria_productos` FROM `proveedores` WHERE `nombre` = '"+valor+"'";
+    String mostrar="SELECT `id_proveedores`, `nombre`, `telefono`, `direccion_correo`, `direccion`, `id_categoria_productos` FROM `proveedores` WHERE `nombre` LIKE '"+valor+"'";
     String []titulos={"Id de proveedor","Nombre de proveedor","telefono","correo","direccion","id categoria"};
     String []Registros=new String[6];
     DefaultTableModel model = new DefaultTableModel(null,titulos);
@@ -568,7 +569,7 @@ public class Proveedores extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         try {
-            String sql="INSERT INTO `proveedores`(`id_proveedores`,`nombre`, `telefono`, `direccion_correo`, `direccion`, `id_categoria_productos`) VALUES (?,?,?,?,?,?)";
+            String sql="INSERT INTO `proveedores`(`id_proveedores`,`nombre`, `telefono`, `direccion_correo`, `direccion`, `id_categoria_productos`) VALUES (NULL,?,?,?,?,?)";
             
             PreparedStatement pst  = cn.prepareStatement(sql);
             

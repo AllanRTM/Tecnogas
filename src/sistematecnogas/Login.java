@@ -58,6 +58,7 @@ super.paintComponent(grafico);
     
     public Login() {
         initComponents();
+        this.setLocationRelativeTo(null); 
         setLocationRelativeTo(null);
         
         fecha_pantalla.setText(fecha());

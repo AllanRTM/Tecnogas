@@ -84,8 +84,6 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
         comboEstado = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         btnLimpiar = new javax.swing.JButton();
-        fechaIngreso = new com.toedter.calendar.JDateChooser();
-        fechaActualizacion = new com.toedter.calendar.JDateChooser();
         lblFecha = new javax.swing.JLabel();
 
         textfield_id_bomba3.setText("textField2");
@@ -168,10 +166,6 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
             }
         });
 
-        fechaIngreso.setDateFormatString("YYYY-MM-d ");
-
-        fechaActualizacion.setDateFormatString("YYYY-MM-d");
-
         lblFecha.setText("dd/MM/YYYY");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -204,11 +198,8 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(jLabel4)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(fechaActualizacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(jLabel9)
@@ -217,12 +208,11 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
                                                 .addComponent(jLabel2))
                                             .addGap(30, 30, 30)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addComponent(txtNumBomba, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(txtIDbomba, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                    .addComponent(comboEstado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addComponent(fechaIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(txtNumBomba, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(txtIDbomba, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(comboEstado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGap(46, 46, 46))))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -231,34 +221,29 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(lblFecha))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txtIDbomba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(txtNumBomba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel7))
-                    .addComponent(fechaIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1)
+                    .addComponent(lblFecha))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
-                    .addComponent(fechaActualizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtIDbomba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtNumBomba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addComponent(jLabel7)
+                .addGap(8, 8, 8)
+                .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -283,8 +268,8 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
             PreparedStatement pst  = cn.prepareStatement(sql);
             pst.setString(1, txtIDbomba.getText());
             pst.setString(2, txtNumBomba.getText());
-            pst.setString(3, ((JTextField)fechaIngreso.getDateEditor().getUiComponent()).getText());
-            pst.setString(4, ((JTextField)fechaActualizacion.getDateEditor().getUiComponent()).getText());
+//            pst.setString(3, ((JTextField)fechaIngreso.getDateEditor().getUiComponent()).getText());
+          //  pst.setString(4, ((JTextField)fechaActualizacion.getDateEditor().getUiComponent()).getText());
             String value=comboEstado.getSelectedItem().toString();
             pst.setString(5, value);
             pst.executeUpdate();
@@ -336,7 +321,7 @@ this.dispose();// TODO add your handling code here:
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
         try {
-            String sql= "`bombas` SET `id_bombas`"+txtIDbomba.getText()+",`num_bomba`"+txtNumBomba.getText()+",`fecha_creacion_bomba`"+((JTextField)fechaIngreso.getDateEditor().getUiComponent()).getText()+",`fecha_actualizacion_bomba`"+((JTextField)fechaActualizacion.getDateEditor().getUiComponent()).getText()+",`estado`"+comboEstado.getSelectedItem()+" WHERE `id_bombas`"+txtIDbomba.getText()+"'";
+            String sql="";// "`bombas` SET `id_bombas`"+txtIDbomba.getText()+",`num_bomba`"+txtNumBomba.getText()+",`fecha_creacion_bomba`"+((JTextField)fechaIngreso.getDateEditor().getUiComponent()).getText()+",`fecha_actualizacion_bomba`"+((JTextField)fechaActualizacion.getDateEditor().getUiComponent()).getText()+",`estado`"+comboEstado.getSelectedItem()+" WHERE `id_bombas`"+txtIDbomba.getText()+"'";
             PreparedStatement pst  = cn.prepareStatement(sql);     
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "LOS DATOS HAN SIDO MODIFICADOS");
@@ -397,8 +382,6 @@ this.dispose();// TODO add your handling code here:
     private javax.swing.JButton btnMostrarTodo;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> comboEstado;
-    private com.toedter.calendar.JDateChooser fechaActualizacion;
-    private com.toedter.calendar.JDateChooser fechaIngreso;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel18;

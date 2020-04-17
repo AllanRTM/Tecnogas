@@ -20,7 +20,7 @@ public class conexion {
     public Connection conexion(){
         try {
             con=DriverManager.getConnection(cadenaConexion,usuario,contraseña);
-            JOptionPane.showMessageDialog(null,"Exito al establecer conexion con la base de datos");
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"No se pudo establecer conexion con la base de datos"+ e.getMessage());
         }

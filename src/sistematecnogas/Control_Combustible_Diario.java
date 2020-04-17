@@ -20,7 +20,7 @@ public class Control_Combustible_Diario extends javax.swing.JFrame {
         initComponents();
         
         setTitle("Control Combustible Diario");
-        setIconImage(new ImageIcon(getClass().getResource("/Imagen/logo_tecnogas_transp.png")).getImage());
+       // setIconImage(new ImageIcon(getClass().getResource("/Imagen/logo_tecnogas_transp.png")).getImage());
     }
 
     /**

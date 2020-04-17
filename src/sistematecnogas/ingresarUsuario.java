@@ -96,8 +96,6 @@ public class ingresarUsuario extends javax.swing.JFrame {
         tblUsuario = new javax.swing.JTable();
         btnModificar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
-        fechaCreacion = new com.toedter.calendar.JDateChooser();
-        fechaActualizacion = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -168,10 +166,6 @@ public class ingresarUsuario extends javax.swing.JFrame {
             }
         });
 
-        fechaCreacion.setDateFormatString("YYYY-MM-d");
-
-        fechaActualizacion.setDateFormatString("YYYY-MM-d");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -180,17 +174,12 @@ public class ingresarUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
                                     .addComponent(jLabel6))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(fechaActualizacion, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-                                        .addGap(253, 253, 253))
-                                    .addComponent(fechaCreacion, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(253, 253, 253))
                             .addComponent(jLabel8)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -260,20 +249,17 @@ public class ingresarUsuario extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(fechaCreacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(fechaActualizacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                .addGap(13, 13, 13)
+                                .addComponent(jLabel6)
+                                .addGap(13, 13, 13)
+                                .addComponent(jLabel7))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton1)
                                 .addGap(25, 25, 25)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -301,8 +287,7 @@ public class ingresarUsuario extends javax.swing.JFrame {
             pst.setString(4, value);
             String value1=comboEstado.getSelectedItem().toString();
             pst.setString(5, value1);
-            pst.setString(6, ((JTextField)fechaCreacion.getDateEditor().getUiComponent()).getText());
-            pst.setString(7, ((JTextField)fechaActualizacion.getDateEditor().getUiComponent()).getText());
+           
             
             //pst.executeUpdate();
               int n=pst.executeUpdate();
@@ -352,16 +337,17 @@ public class ingresarUsuario extends javax.swing.JFrame {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
-        try {
-            String sql= "`usuarios` SET `id_usuario`"+txtID.getText()+",`nombre`"+txtNombre.getText()+",`contraseña`"+txtPassword.getText()+",`tipo`"+comboTipo.getSelectedItem()+",`estado`"+comboEstado.getSelectedItem()+",`fecha_creacion_usuario`"+((JTextField)fechaCreacion.getDateEditor().getUiComponent()).getText()+",`fecha_actualizacion`"+((JTextField)fechaActualizacion.getDateEditor().getUiComponent()).getText()+" WHERE `id_usuario`"+txtID.getText()+"'";
+        /*try {
+           /* String sql= "`usuarios` SET `id_usuario`"+txtID.getText()+",`nombre`"+txtNombre.getText()+",`contraseña`"+txtPassword.getText()+",`tipo`"+comboTipo.getSelectedItem()+",`estado`"+comboEstado.getSelectedItem()+",`fecha_creacion_usuario`"+((JTextField)fechaCreacion.getDateEditor().getUiComponent()).getText()+",`fecha_actualizacion`"+((JTextField)fechaActualizacion.getDateEditor().getUiComponent()).getText()+" WHERE `id_usuario`"+txtID.getText()+"'";
             PreparedStatement pst  = cn.prepareStatement(sql);
-            pst.executeUpdate();
+            pst.executeUpdate();*/
             JOptionPane.showMessageDialog(null, "LOS DATOS HAN SIDO MODIFICADOS");
-            //cargar(""); 
+        /*    cargar(""); 
         } catch (java.sql.SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, "INGRESA TODOS LOS DATOS CORRECTAMENTE");
         
         }
+        /**/
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -417,8 +403,6 @@ Connection cn = cc.conexion();
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> comboEstado;
     private javax.swing.JComboBox<String> comboTipo;
-    private com.toedter.calendar.JDateChooser fechaActualizacion;
-    private com.toedter.calendar.JDateChooser fechaCreacion;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
