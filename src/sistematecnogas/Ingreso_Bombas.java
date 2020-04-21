@@ -16,38 +16,57 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import servicios.conexion;
+import Atxy2k.CustomTextField.RestrictedTextField;
 
 /**
  *
  * @author Wilfredo Serrano
  */
 public class Ingreso_Bombas extends javax.swing.JFrame {
+
     conexion cc = new conexion();
     Connection cn = cc.conexion();
     Statement sent;
-     public static String fecha(){
-        Date fecha=new Date();
-        SimpleDateFormat formatoFecha=new SimpleDateFormat("dd/MM/YYYY");
+
+    public static String fecha() {
+        Date fecha = new Date();
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/YYYY");
         return formatoFecha.format(fecha);
     }
+
     /**
      * Creates new form Ingreso_Bombas
      */
     public Ingreso_Bombas() {
         initComponents();
+        asterisco();
+        txtIDbomba.setEnabled(false);
         lblFecha.setText(fecha());
-        try{
-        sent=cn.createStatement();
-        String sql="SELECT * FROM `estado` ";
-             java.sql.Statement st=cn.createStatement();
-        java.sql.ResultSet rs=sent.executeQuery(sql);
-        comboEstado.addItem("seleccione estado");
-        while(rs.next()){
-         
-            this.comboEstado.addItem(rs.getString("estado"));
+        try {
+            sent = cn.createStatement();
+            String sql = "SELECT * FROM `estado` ";
+            java.sql.Statement st = cn.createStatement();
+            java.sql.ResultSet rs = sent.executeQuery(sql);
+            comboEstado.addItem("seleccione estado");
+            while (rs.next()) {
+
+                this.comboEstado.addItem(rs.getString("estado"));
+            }
+        } catch (Exception e) {
+
         }
-        }catch(Exception e){
-            
+    }
+
+    public void asterisco() {
+        if (txtNumBomba.getText().isEmpty()) {
+            asteriscoNumero.setText("*");
+        } else {
+            asteriscoNumero.setText(" ");
+        }
+        if (comboEstado.getSelectedItem() == comboEstado.getItemAt(0)) {
+            asteriscoEstado.setText("*");
+        } else {
+            asteriscoEstado.setText(" ");
         }
     }
 
@@ -70,7 +89,6 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         btnMostrarTodo = new javax.swing.JButton();
         btnAtras = new javax.swing.JButton();
@@ -82,11 +100,12 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
         txtIDbomba = new javax.swing.JTextField();
         txtNumBomba = new javax.swing.JTextField();
         comboEstado = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
         btnLimpiar = new javax.swing.JButton();
-        fechaIngreso = new com.toedter.calendar.JDateChooser();
-        fechaActualizacion = new com.toedter.calendar.JDateChooser();
         lblFecha = new javax.swing.JLabel();
+        txtBuscar = new javax.swing.JTextField();
+        asteriscoNumero = new javax.swing.JLabel();
+        asteriscoEstado = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         textfield_id_bomba3.setText("textField2");
 
@@ -103,13 +122,11 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("Ingreso de bombas");
+        jLabel1.setText("Bombas");
 
         jLabel2.setText("ID Bomba:");
 
         jLabel3.setText("Numero de bomba:");
-
-        jLabel7.setText("Fecha de ingreso:");
 
         jLabel9.setText("Ingresar en estado:");
 
@@ -157,9 +174,27 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
 
             }
         ));
+        tblBombas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblBombasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblBombas);
 
-        jLabel4.setText("Fecha de actualizacion:");
+        txtNumBomba.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNumBombaKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumBombaKeyTyped(evt);
+            }
+        });
+
+        comboEstado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                comboEstadoKeyReleased(evt);
+            }
+        });
 
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -168,11 +203,31 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
             }
         });
 
-        fechaIngreso.setDateFormatString("YYYY-MM-d ");
-
-        fechaActualizacion.setDateFormatString("YYYY-MM-d");
-
         lblFecha.setText("dd/MM/YYYY");
+
+        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarActionPerformed(evt);
+            }
+        });
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyReleased(evt);
+            }
+        });
+
+        asteriscoNumero.setBackground(new java.awt.Color(255, 0, 0));
+        asteriscoNumero.setForeground(new java.awt.Color(255, 0, 0));
+        asteriscoNumero.setText("jLabel4");
+
+        asteriscoEstado.setBackground(new java.awt.Color(255, 0, 0));
+        asteriscoEstado.setForeground(new java.awt.Color(255, 0, 0));
+        asteriscoEstado.setText("jLabel5");
+
+        jLabel4.setText("Buscar:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -185,14 +240,6 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnIngresar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(lblFecha)
-                                        .addGap(17, 17, 17))))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnAtras)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnLimpiar)
@@ -200,72 +247,73 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
                                 .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnMostrarTodo))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnIngresar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnMostrarTodo))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addGap(122, 122, 122)
+                                        .addComponent(lblFecha)
+                                        .addGap(17, 17, 17))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(jLabel4)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(fechaActualizacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel9)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel2))
+                                        .addGap(30, 30, 30)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel9)
-                                                .addComponent(jLabel7)
-                                                .addComponent(jLabel3)
-                                                .addComponent(jLabel2))
-                                            .addGap(30, 30, 30)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addComponent(txtNumBomba, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(txtIDbomba, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                    .addComponent(comboEstado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addComponent(fechaIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                                .addComponent(txtIDbomba, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(comboEstado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txtNumBomba, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(asteriscoNumero)
+                                            .addComponent(asteriscoEstado)))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 15, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(lblFecha))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txtIDbomba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(txtNumBomba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel7))
-                    .addComponent(fechaIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblFecha)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
-                    .addComponent(fechaActualizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtIDbomba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtNumBomba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(asteriscoNumero))
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(asteriscoEstado))
+                .addGap(7, 7, 7)
+                .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnMostrarTodo, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnMostrarTodo, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAtras)
                     .addComponent(btnModificar)
@@ -278,52 +326,55 @@ public class Ingreso_Bombas extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         // TODO add your handling code here:
+
         try {
-            String sql="INSERT INTO `bombas` (`id_bombas`, `num_bomba`, `fecha_creacion_bomba`, `fecha_actualizacion_bomba`, `estado`) VALUES (?, ?, ?, ?, ?)";           
-            PreparedStatement pst  = cn.prepareStatement(sql);
-            pst.setString(1, txtIDbomba.getText());
-            pst.setString(2, txtNumBomba.getText());
-            pst.setString(3, ((JTextField)fechaIngreso.getDateEditor().getUiComponent()).getText());
-            pst.setString(4, ((JTextField)fechaActualizacion.getDateEditor().getUiComponent()).getText());
-            String value=comboEstado.getSelectedItem().toString();
-            pst.setString(5, value);
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Registro Guardado con Exito");
-            //cargar("");  
+            if (txtNumBomba.getText().isEmpty() || (comboEstado.getSelectedItem()==comboEstado.getItemAt(0))) {
+                JOptionPane.showMessageDialog(null, "No se permiten campos vacios","Error",JOptionPane.ERROR_MESSAGE);
+            } else {
+                String sql = "INSERT INTO `bombas` (`id_bombas`, `num_bomba`, `fecha_creacion_bomba`, `fecha_actualizacion_bomba`, `estado`) VALUES (NULL, ?, SYSDATE(), SYSDATE(), ?)";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, txtNumBomba.getText());
+                String value = comboEstado.getSelectedItem().toString();
+                pst.setString(2, value);
+                if (txtNumBomba.getText().length() > 2) {
+                        JOptionPane.showMessageDialog(null, "Los campos no pueden tener mas de 2 caracteres","Error",JOptionPane.ERROR_MESSAGE);
+                    }else{
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Registro Guardado con Exito");
+            }}
         } catch (java.sql.SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, "INGRESA TODOS LOS DATOS CORRECTAMENTE");
+            JOptionPane.showMessageDialog(rootPane, "INGRESA TODOS LOS DATOS CORRECTAMENTE","Error",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnMostrarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarTodoActionPerformed
         // TODO add your handling code here:
-        String mostrar="SELECT `id_bombas`, `num_bomba`, `fecha_creacion_bomba`, `fecha_actualizacion_bomba`, `estado` FROM `bombas` WHERE 1";
-    String []titulos={"ID bomba","Numero de bomba","Fecha de creacion de la bomba","fecha de actualizacion de la bomba","Estado de la bomba"};
-    String []Registros=new String[5];
-    DefaultTableModel model = new DefaultTableModel(null,titulos);
-  
+        String mostrar = "SELECT `id_bombas`, `num_bomba`, `fecha_creacion_bomba`, `fecha_actualizacion_bomba`, `estado` FROM `bombas` WHERE 1";
+        String[] titulos = {"ID bomba", "Numero de bomba", "Fecha de creacion de la bomba", "Fecha de actualizacion de la bomba", "Estado de la bomba"};
+        String[] Registros = new String[5];
+        DefaultTableModel model = new DefaultTableModel(null, titulos);
+
         try {
-              Statement st = cn.createStatement();
-              java.sql.ResultSet rs = st.executeQuery(mostrar);
-              while(rs.next())
-              {
-                  Registros[0]= rs.getString("id_bombas");
-                  Registros[1]= rs.getString("num_bomba");
-                  Registros[2]= rs.getString("fecha_creacion_bomba");
-                  Registros[3]= rs.getString("fecha_actualizacion_bomba");
-                  Registros[4]= rs.getString("estado");                       
-                  model.addRow(Registros);
-              }
-              tblBombas.setModel(model);
+            Statement st = cn.createStatement();
+            java.sql.ResultSet rs = st.executeQuery(mostrar);
+            while (rs.next()) {
+                Registros[0] = rs.getString("id_bombas");
+                Registros[1] = rs.getString("num_bomba");
+                Registros[2] = rs.getString("fecha_creacion_bomba");
+                Registros[3] = rs.getString("fecha_actualizacion_bomba");
+                Registros[4] = rs.getString("estado");
+                model.addRow(Registros);
+            }
+            tblBombas.setModel(model);
         } catch (java.sql.SQLException ex) {
             Logger.getLogger(Categoria.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnMostrarTodoActionPerformed
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-panelcentral botonatras = new panelcentral();
-botonatras.setVisible(true);
-this.dispose();// TODO add your handling code here:
+        panelcentral botonatras = new panelcentral();
+        botonatras.setVisible(true);
+        this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
@@ -336,14 +387,13 @@ this.dispose();// TODO add your handling code here:
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
         try {
-            String sql= "`bombas` SET `id_bombas`"+txtIDbomba.getText()+",`num_bomba`"+txtNumBomba.getText()+",`fecha_creacion_bomba`"+((JTextField)fechaIngreso.getDateEditor().getUiComponent()).getText()+",`fecha_actualizacion_bomba`"+((JTextField)fechaActualizacion.getDateEditor().getUiComponent()).getText()+",`estado`"+comboEstado.getSelectedItem()+" WHERE `id_bombas`"+txtIDbomba.getText()+"'";
-            PreparedStatement pst  = cn.prepareStatement(sql);     
+            String sql = "UPDATE `bombas` SET `id_bombas`= '" + txtIDbomba.getText() + "',`num_bomba`= '" + txtNumBomba.getText() + "',`fecha_actualizacion_bomba`= SYSDATE(),`estado`= '" + comboEstado.getSelectedItem() + "' WHERE `bombas`.`id_bombas`= '" + txtIDbomba.getText() + "'";
+            PreparedStatement pst = cn.prepareStatement(sql);
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "LOS DATOS HAN SIDO MODIFICADOS");
-            //cargar("");
         } catch (java.sql.SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, "INGRESA TODOS LOS DATOS CORRECTAMENTE");
-        
+            JOptionPane.showMessageDialog(rootPane, "INGRESA TODOS LOS DATOS CORRECTAMENTE","Error",JOptionPane.ERROR_MESSAGE);
+
         }
     }//GEN-LAST:event_btnModificarActionPerformed
 
@@ -351,8 +401,74 @@ this.dispose();// TODO add your handling code here:
         // TODO add your handling code here:
         txtIDbomba.setText("");
         txtNumBomba.setText("");
-       
+        txtBuscar.setText("");
+        comboEstado.setSelectedIndex(0);
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void tblBombasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBombasMouseClicked
+        // TODO add your handling code here:
+        int seleccionar = tblBombas.rowAtPoint(evt.getPoint());
+        txtIDbomba.setText(String.valueOf(tblBombas.getValueAt(seleccionar, 0)));
+        txtNumBomba.setText(String.valueOf(tblBombas.getValueAt(seleccionar, 1)));
+        comboEstado.setSelectedItem(String.valueOf(tblBombas.getValueAt(seleccionar, 4)));
+    }//GEN-LAST:event_tblBombasMouseClicked
+
+    private void cargar() {
+        String mostrar = "SELECT `id_bombas`, `num_bomba`, `fecha_creacion_bomba`, `fecha_actualizacion_bomba`, `estado` FROM `bombas` WHERE `num_bomba` = '" + txtBuscar.getText() + "'" + "OR `id_bombas` LIKE '%" + txtBuscar.getText() + "%'";
+        String[] titulos = {"ID bomba", "Numero de bomba", "Fecha de creacion de la bomba", "Fecha de actualizacion de la bomba", "Estado de la bomba"};
+        String[] Registros = new String[5];
+        DefaultTableModel model = new DefaultTableModel(null, titulos);
+
+        try {
+            Statement st = cn.createStatement();
+            java.sql.ResultSet rs = st.executeQuery(mostrar);
+            while (rs.next()) {
+                Registros[0] = rs.getString("id_bombas");
+                Registros[1] = rs.getString("num_bomba");
+                Registros[2] = rs.getString("fecha_creacion_bomba");
+                Registros[3] = rs.getString("fecha_actualizacion_bomba");
+                Registros[4] = rs.getString("estado");
+                model.addRow(Registros);
+            }
+            tblBombas.setModel(model);
+        } catch (java.sql.SQLException ex) {
+            Logger.getLogger(Categoria.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
+        // TODO add your handling code here:
+        cargar();
+    }//GEN-LAST:event_txtBuscarActionPerformed
+
+    private void txtBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyPressed
+        // TODO add your handling code here:
+        //cargar();
+    }//GEN-LAST:event_txtBuscarKeyPressed
+
+    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
+        // TODO add your handling code here:
+        cargar();
+    }//GEN-LAST:event_txtBuscarKeyReleased
+
+    private void txtNumBombaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumBombaKeyTyped
+        // TODO add your handling code here:
+        char validar =evt.getKeyChar();
+        
+        if(evt.getKeyChar()>=33 && evt.getKeyChar()<=47 || evt.getKeyChar()>=58 && evt.getKeyChar()<=255){
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Solo se permiten numeros","Error",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_txtNumBombaKeyTyped
+
+    private void txtNumBombaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumBombaKeyReleased
+        // TODO add your handling code here:
+        asterisco();
+    }//GEN-LAST:event_txtNumBombaKeyReleased
+
+    private void comboEstadoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboEstadoKeyReleased
+        // TODO add your handling code here:
+        asterisco();
+    }//GEN-LAST:event_comboEstadoKeyReleased
 
     /**
      * @param args the command line arguments
@@ -390,6 +506,8 @@ this.dispose();// TODO add your handling code here:
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel asteriscoEstado;
+    private javax.swing.JLabel asteriscoNumero;
     private javax.swing.JButton btnAtras;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnLimpiar;
@@ -397,8 +515,6 @@ this.dispose();// TODO add your handling code here:
     private javax.swing.JButton btnMostrarTodo;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> comboEstado;
-    private com.toedter.calendar.JDateChooser fechaActualizacion;
-    private com.toedter.calendar.JDateChooser fechaIngreso;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel18;
@@ -408,13 +524,13 @@ this.dispose();// TODO add your handling code here:
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JTable tblBombas;
     private java.awt.TextField textfield_id_bomba3;
+    private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtIDbomba;
     private javax.swing.JTextField txtNumBomba;
     // End of variables declaration//GEN-END:variables
