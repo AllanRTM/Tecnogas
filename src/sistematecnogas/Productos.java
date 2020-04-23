@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.Toolkit;
 import java.sql.*;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import javax.swing.JTextField;
@@ -35,8 +36,9 @@ public class Productos extends javax.swing.JFrame {
       initComponents();
       validar();
       Llenar();
-     
-      
+     ImageIcon Img = new ImageIcon(getClass().getResource("/Imagen/logo_tecnogas_transp.png"));
+       setIconImage(new ImageIcon(getClass().getResource("/Imagen/logo_tecnogas_transp.png")).getImage());
+       
           validacion1.setVisible(false);
     validacion2.setVisible(false);
     txtactualizacion.setVisible(false);
@@ -467,7 +469,18 @@ cmbusuario.setSelectedItem(tablaproductos.getValueAt(row,7).toString());
     }//GEN-LAST:event_tablaproductosMouseClicked
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
-   try{
+    double numm=Double.parseDouble(txtprecio.getText());
+       if(numm==0 ){
+            JOptionPane.showMessageDialog(null, "Ingrese un precio correcto","alerta" ,JOptionPane.ERROR_MESSAGE);
+            
+        
+         if (txtnombre.getText().length() < 3) {
+                        JOptionPane.showMessageDialog(null, "El nombre no puede tener menos de 3 caracteres","Error",JOptionPane.ERROR_MESSAGE);
+                    }
+        }else{  
+        
+        
+        try{
          String sql="INSERT INTO `productos`(`nombre_producto`,`id_producto`,`precio_producto`,`fecha_creacion`,`fecha_actualizacion`,`id_categoria_productos`,`estado_productos`,`id_usuario`) VALUES (?,?,?,SYSDATE(),SYSDATE(),?,?,?)"; 
          PreparedStatement ps=cn.prepareCall(sql);
          ps.setString(1,txtnombre.getText());
@@ -501,7 +514,7 @@ cmbusuario.setSelectedItem(tablaproductos.getValueAt(row,7).toString());
         }else{
              validacion2.setVisible(false);
          }
-        
+       }
         
     }//GEN-LAST:event_btnguardarActionPerformed
 
@@ -537,6 +550,7 @@ cmbusuario.setSelectedItem(tablaproductos.getValueAt(row,7).toString());
     }catch(Exception e){
         JOptionPane.showMessageDialog(null,"error"+e.getMessage());
     }
+        
     }//GEN-LAST:event_btnmodificarActionPerformed
 
     private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
@@ -558,6 +572,13 @@ cmbusuario.setSelectedItem(tablaproductos.getValueAt(row,7).toString());
         || evt.getKeyChar()>=242 && evt.getKeyChar()<=255){
             evt.consume();
             leyenda1.setText("solo letras");
+        }
+         
+         String nuestrotexto=txtnombre.getText();
+        if (nuestrotexto.length()>0){
+        char primeraletra=nuestrotexto.charAt(0);
+        nuestrotexto=Character.toUpperCase(primeraletra)+nuestrotexto.substring(1,nuestrotexto.length());
+        txtnombre.setText(nuestrotexto);
         }
     }//GEN-LAST:event_txtnombreKeyTyped
 
